@@ -2803,6 +2803,12 @@ html, body {
         height: 50px;
         font-size: 1.2rem;
     }
+    .back-to-top {
+        right: 20px;
+        bottom: 20px;
+        width: 45px;
+        height: 45px;
+    }
 }
 
 @media (max-width: 768px) {
