@@ -555,7 +555,7 @@ body.hovered-element .custom-cursor-follower {
     height: 100vh;
     background-color: var(--bg-white);
     box-shadow: -15px 0 40px rgba(0, 0, 0, 0.05);
-    z-index: 995;
+    z-index: 1000;
     padding: 50px 25px 30px 25px;
     transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     overflow: hidden;
@@ -579,15 +579,29 @@ body.hovered-element .custom-cursor-follower {
     font-size: 1.05rem;
     font-weight: 600;
     color: var(--text-dark);
-    padding: 8px 0;
-    transition: var(--transition-quick);
-    display: block;
+    padding: 12px 18px;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    align-items: center;
     width: 100%;
 }
 
-.mobile-link:hover {
-    color: var(--primary);
-    padding-left: 5px;
+.mobile-link i {
+    font-size: 1.15rem;
+    transition: transform 0.3s ease;
+}
+
+.mobile-link:hover,
+.mobile-link.active {
+    color: var(--primary-dark);
+    background-color: var(--primary-light);
+    box-shadow: 0 4px 10px rgba(0, 122, 122, 0.08);
+}
+
+.mobile-link:hover i,
+.mobile-link.active i {
+    transform: scale(1.1);
 }
 
 .mobile-appointment-btn {
