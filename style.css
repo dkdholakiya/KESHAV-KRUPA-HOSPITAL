@@ -2694,8 +2694,8 @@ html, body {
     position: fixed;
     bottom: 90px; /* Above the back-to-top button */
     right: 30px;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: var(--bg-white);
@@ -2753,6 +2753,10 @@ html, body {
     max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
     border-radius: 20px;
     padding: 40px;
     position: relative;
@@ -2760,6 +2764,10 @@ html, body {
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+.global-modal-container::-webkit-scrollbar {
+    display: none;
 }
 
 .global-modal-overlay.open .global-modal-container {
@@ -2799,9 +2807,9 @@ html, body {
     .floating-appointment-btn {
         bottom: 80px;
         right: 20px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
     }
     .back-to-top {
         right: 20px;
