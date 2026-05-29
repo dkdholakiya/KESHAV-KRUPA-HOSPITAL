@@ -398,6 +398,20 @@ body.hovered-element .custom-cursor-follower {
 }
 
 /* ==========================================================================
+   3.5 SUBPAGE LAYOUT
+   ========================================================================== */
+
+.subpage-main {
+    padding-top: 130px; /* Offset for desktop headers */
+}
+
+@media (max-width: 768px) {
+    .subpage-main {
+        padding-top: 170px; /* Offset for stacked mobile headers */
+    }
+}
+
+/* ==========================================================================
    4. NAVIGATION BAR
    ========================================================================== */
 
@@ -1216,15 +1230,45 @@ body.hovered-element .custom-cursor-follower {
     margin-bottom: 20px;
 }
 
+.premium-lead {
+    font-size: 1.45rem !important;
+    font-weight: 700 !important;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.4 !important;
+    margin-bottom: 25px !important;
+}
+
 .about-left .body-text {
     color: var(--text-muted);
     margin-bottom: 40px;
+}
+
+.accented-body {
+    border-left: 3px solid var(--accent);
+    padding-left: 20px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 50px !important;
 }
 
 .about-cards-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 25px;
+}
+
+.staggered-cards {
+    align-items: flex-start;
+}
+
+.card-up {
+    margin-top: 0;
+}
+
+.card-down {
+    margin-top: 40px;
 }
 
 .about-card {
@@ -1297,6 +1341,72 @@ body.hovered-element .custom-cursor-follower {
     box-shadow: 0 15px 35px rgba(0,0,0,0.05);
 }
 
+.modern-overlap {
+    position: relative;
+    padding-bottom: 40px; 
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.shadow-lg {
+    border-radius: 24px !important;
+    height: 420px !important;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15) !important;
+    position: relative;
+    z-index: 1;
+    overflow: visible !important;
+}
+
+.shadow-lg img {
+    border-radius: 24px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.visual-accent-dot {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(var(--accent) 2px, transparent 2px);
+    background-size: 15px 15px;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.overlapping-counters {
+    position: absolute;
+    bottom: -20px;
+    left: -10px;
+    width: 90%;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 25px 50px rgba(0, 122, 122, 0.15);
+    border: 1px solid rgba(255,255,255,0.5);
+    margin-bottom: 0 !important;
+    gap: 15px !important;
+}
+
+.overlapping-counters .counter-box {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 10px;
+}
+
+.hover-lift {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+    transform: translateY(-8px);
+}
+
 .about-image {
     width: 100%;
     height: 100%;
@@ -1314,6 +1424,58 @@ body.hovered-element .custom-cursor-follower {
 
 @media (max-width: 600px) {
     .about-cards-container { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   6.5 PREMIUM SCROLLING HEADLINE MARQUEE
+   ========================================================================== */
+
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    background: transparent;
+    padding: 60px 0;
+    display: flex;
+    white-space: nowrap;
+    position: relative;
+    user-select: none;
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+    animation: marquee-scroll 25s linear infinite;
+}
+
+
+.marquee-text {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #d9d9d9;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    padding: 0 40px;
+}
+
+.marquee-eye {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin: 0 30px;
+    object-fit: cover;
+    animation: spin-eye 20s linear infinite;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+@keyframes spin-eye {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* ==========================================================================
@@ -2524,6 +2686,125 @@ html, body {
     }
 }
 
+/* ==========================================================================
+   GLOBAL APPOINTMENT MODAL & FLOATING BUTTON
+   ========================================================================== */
+
+.floating-appointment-btn {
+    position: fixed;
+    bottom: 90px; /* Above the back-to-top button */
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: var(--bg-white);
+    font-size: 1.5rem;
+    border: none;
+    box-shadow: 0 10px 25px rgba(0, 122, 122, 0.4);
+    cursor: pointer;
+    z-index: 998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse-ring 2s infinite;
+}
+
+.floating-appointment-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 122, 122, 0.6);
+    animation: none;
+}
+
+@keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgba(0, 122, 122, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(0, 122, 122, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 122, 122, 0); }
+}
+
+.global-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.global-modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.global-modal-container {
+    background: var(--bg-white);
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+}
+
+.global-modal-overlay.open .global-modal-container {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0,0,0,0.05);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.close-modal-btn:hover {
+    background: var(--primary);
+    color: var(--bg-white);
+    transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    .global-modal-container {
+        padding: 30px 20px;
+    }
+    .floating-appointment-btn {
+        bottom: 80px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .container {
         width: 94%;
@@ -2540,6 +2821,32 @@ html, body {
     .section-title {
         font-size: 2rem;
     }
+    
+    /* Reset About Section overlaps for mobile */
+    .modern-overlap {
+        padding: 0;
+    }
+    .shadow-lg {
+        height: 300px !important;
+        margin-bottom: 25px;
+    }
+    .overlapping-counters {
+        position: relative;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        margin-bottom: 30px !important;
+    }
+    .card-down {
+        margin-top: 0; /* Remove stagger */
+    }
+    .about-cards-container.staggered-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .marquee-container { padding: 40px 0; }
+    .marquee-text { font-size: 3.5rem; padding: 0 30px; }
+    .marquee-eye { width: 50px; height: 50px; margin: 0 20px; }
     
     /* Services grid responsive wrap */
     .services-grid {
@@ -2588,6 +2895,10 @@ html, body {
     .section-title {
         font-size: 1.75rem;
     }
+    
+    .marquee-container { padding: 30px 0; }
+    .marquee-text { font-size: 2.2rem; padding: 0 15px; }
+    .marquee-eye { width: 35px; height: 35px; margin: 0 12px; }
     
     /* Hero section titles & paddings */
     .hero-brand-card {

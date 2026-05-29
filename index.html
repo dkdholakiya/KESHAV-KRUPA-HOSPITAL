@@ -229,20 +229,20 @@
 
                 <div class="about-grid">
                     <div class="about-left">
-                        <p class="lead-text">
+                        <p class="lead-text premium-lead">
                             At Keshavkrupa Hospital, we combine medical excellence, top-tier clinical intelligence, and warm compassionate care to deliver an unparalleled patient experience.
                         </p>
-                        <p class="body-text">
+                        <p class="body-text accented-body">
                             Located at Gandhinagar, Gujarat, our facility is equipped with state-of-the-art medical devices and designed with a luxury environment that ensures healing in peace. We are dedicated to providing comprehensive healthcare services round-the-clock.
                         </p>
                         
-                        <div class="about-cards-container">
-                            <div class="about-card glass-card">
+                        <div class="about-cards-container staggered-cards">
+                            <div class="about-card glass-card card-up">
                                 <div class="card-icon"><i class="fa-solid fa-eye-low-vision"></i></div>
                                 <h3>Our Vision</h3>
                                 <p>To be the regional leader in compassionate, patient-first luxury healthcare and clinical innovation.</p>
                             </div>
-                            <div class="about-card glass-card">
+                            <div class="about-card glass-card card-down">
                                 <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
                                 <h3>Our Mission</h3>
                                 <p>Delivering high-quality, safe, and affordable medical treatments with utmost professional integrity.</p>
@@ -250,41 +250,69 @@
                         </div>
                     </div>
 
-                    <div class="about-right">
-                        <div class="counter-grid">
-                            <div class="counter-box glass-card">
+                    <div class="about-right modern-overlap">
+                        <div class="about-side-visual shadow-lg">
+                            <div class="visual-accent-dot"></div>
+                            <img src="images/about-lobby.jpg" alt="Keshavkrupa Lobby Reception" class="about-image">
+                        </div>
+                        <div class="counter-grid overlapping-counters">
+                            <div class="counter-box glass-card hover-lift">
                                 <div class="counter-num-wrapper">
                                     <span class="counter-number" data-target="10">0</span><span class="counter-plus">+</span>
                                 </div>
                                 <span class="counter-label">Expert Doctors</span>
                             </div>
-                            <div class="counter-box glass-card">
+                            <div class="counter-box glass-card hover-lift">
                                 <div class="counter-num-wrapper">
                                     <span class="counter-number" data-target="5000">0</span><span class="counter-plus">+</span>
                                 </div>
                                 <span class="counter-label">Happy Patients</span>
                             </div>
-                            <div class="counter-box glass-card">
+                            <div class="counter-box glass-card hover-lift">
                                 <div class="counter-num-wrapper">
                                     <span class="counter-number" data-target="24">0</span><span class="counter-plus">/7</span>
                                 </div>
                                 <span class="counter-label">Emergency Care</span>
                             </div>
-                            <div class="counter-box glass-card">
+                            <div class="counter-box glass-card hover-lift">
                                 <div class="counter-num-wrapper">
                                     <span class="counter-number" data-target="15">0</span><span class="counter-plus">+</span>
                                 </div>
                                 <span class="counter-label">Years of Care</span>
                             </div>
                         </div>
-                        <div class="about-side-visual">
-                            <img src="images/about-lobby.jpg" alt="Keshavkrupa Lobby Reception" class="about-image">
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- PREMIUM SCROLLING HEADLINE MARQUEE -->
+        <div class="marquee-title-wrapper" style="text-align: center; padding-top: 20px;">
+            <span class="section-subtitle" style="margin-bottom: 0;">WHAT I DO?</span>
+        </div>
+        <div class="marquee-container" style="padding-top: 10px;">
+            <div class="marquee-content">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+            </div>
+            <!-- Duplicate content for seamless infinite scroll loop -->
+            <div class="marquee-content" aria-hidden="true">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+                <span class="marquee-text">BEST SERVICES FOR MY PATIENTS</span>
+                <img src="images/eye-icon.png" alt="Eye" class="marquee-eye">
+            </div>
+        </div>
         <!-- 3. SERVICES SECTION -->
         <section id="services" class="services-section section-padding section-bg-light">
             <div class="container">
@@ -340,7 +368,7 @@
                         <div class="service-border"></div>
                         <div class="service-icon"><i class="fa-solid fa-venus"></i></div>
                         <h3>Gynecology</h3>
-                        <p>Comprehensive women’s health checks, prenatal monitoring, safe delivery rooms, and post-natal support structures.</p>
+                        <p>Comprehensive womenâ€™s health checks, prenatal monitoring, safe delivery rooms, and post-natal support structures.</p>
                         <a href="#appointment" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                     <!-- Card 7 -->
@@ -641,85 +669,7 @@
         </section>
 
         <!-- 9. APPOINTMENT FORM SECTION -->
-        <section id="appointment" class="appointment-section section-padding">
-            <div class="container">
-                <div class="appointment-wrapper glass-card">
-                    <div class="appointment-header text-center">
-                        <span class="section-subtitle">SECURE A TIME</span>
-                        <h2 class="section-title">Schedule An Appointment</h2>
-                        <p>Fill out this form and our clinical coordinator will call you back within 15 minutes to confirm.</p>
-                        <div class="section-divider"></div>
-                    </div>
 
-                    <form id="appointmentForm" class="appointment-form" novalidate>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" required placeholder=" " class="form-control">
-                                <label for="name" class="floating-label">Full Name</label>
-                                <span class="error-msg">Please enter your name.</span>
-                            </div>
-                            <div class="form-group">
-                                <input type="tel" id="phone" name="phone" required placeholder=" " class="form-control">
-                                <label for="phone" class="floating-label">Phone Number</label>
-                                <span class="error-msg">Please enter a valid 10-digit number.</span>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" required placeholder=" " class="form-control">
-                                <label for="email" class="floating-label">Email Address</label>
-                                <span class="error-msg">Please enter a valid email address.</span>
-                            </div>
-                            <div class="form-group select-group">
-                                <select id="department" name="department" required class="form-control select-control">
-                                    <option value="" disabled selected hidden></option>
-                                    <option value="general-medicine">General Medicine</option>
-                                    <option value="emergency">Emergency Care</option>
-                                    <option value="cardiology">Cardiology (Heart)</option>
-                                    <option value="orthopedics">Orthopedics (Bones)</option>
-                                    <option value="pediatrics">Pediatrics (Children)</option>
-                                    <option value="gynecology">Gynecology (Women)</option>
-                                    <option value="diagnostics">Diagnostics / Labs</option>
-                                </select>
-                                <label for="department" class="floating-label">Select Medical Department</label>
-                                <span class="error-msg">Please select a department.</span>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <input type="date" id="date" name="date" required placeholder=" " class="form-control date-control">
-                                <label for="date" class="floating-label">Preferred Date</label>
-                                <span class="error-msg">Please select a date in the future.</span>
-                            </div>
-                        </div>
-
-                        <div class="form-group textarea-group">
-                            <textarea id="message" name="message" placeholder=" " rows="4" class="form-control"></textarea>
-                            <label for="message" class="floating-label">Message / Clinical Concerns (Optional)</label>
-                        </div>
-
-                        <div class="form-actions text-center">
-                            <button type="submit" class="btn btn-primary submit-btn">
-                                <span>Request Appointment</span>
-                                <i class="fa-solid fa-paper-plane"></i>
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- Success Alert Modal Overlay -->
-                    <div class="form-success-overlay">
-                        <div class="success-box glass-card">
-                            <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
-                            <h3>Request Received!</h3>
-                            <p>Thank you for choosing Keshavkrupa. A care planner will phone you at <strong id="userPhone"></strong> shortly to finalize your slot.</p>
-                            <button type="button" class="btn btn-primary close-success-btn"><span>Close</span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- 10. GALLERY SECTION -->
         <section id="gallery" class="gallery-section section-padding section-bg-light">
@@ -1004,6 +954,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Custom Application Javascript -->
     <script src="script.js"></script>
+<!-- GLOBAL APPOINTMENT MODAL & FLOATING BUTTON -->
+<button class="floating-appointment-btn" id="floatingAppBtn" title="Book Appointment">
+    <i class="fa-solid fa-calendar-check"></i>
+</button>
+
+<div id="globalAppointmentModal" class="global-modal-overlay">
+    <div class="global-modal-container glass-card">
+        <button class="close-modal-btn" id="closeGlobalModal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="appointment-header text-center">
+            <span class="section-subtitle">SECURE A TIME</span>
+            <h2 class="section-title" style="font-size: 1.8rem;">Schedule An Appointment</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 20px;">Fill out this form and our coordinator will call you back within 15 minutes.</p>
+        </div>
+        <form id="appointmentForm" class="appointment-form" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required placeholder=" " class="form-control">
+                    <label for="name" class="floating-label">Full Name</label>
+                    <span class="error-msg">Please enter your name.</span>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" required placeholder=" " class="form-control">
+                    <label for="phone" class="floating-label">Phone Number</label>
+                    <span class="error-msg">Please enter a valid 10-digit number.</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required placeholder=" " class="form-control">
+                    <label for="email" class="floating-label">Email Address</label>
+                    <span class="error-msg">Please enter a valid email.</span>
+                </div>
+                <div class="form-group select-group">
+                    <select id="department" name="department" required class="form-control select-control">
+                        <option value="" disabled selected hidden></option>
+                        <option value="general">General Medicine</option>
+                        <option value="emergency">Emergency Care</option>
+                        <option value="cardiology">Cardiology</option>
+                        <option value="orthopedics">Orthopedics</option>
+                        <option value="pediatrics">Pediatrics</option>
+                    </select>
+                    <label for="department" class="floating-label">Select Department</label>
+                    <span class="error-msg">Please select a department.</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="date" id="date" name="date" required placeholder=" " class="form-control date-control">
+                    <label for="date" class="floating-label">Preferred Date</label>
+                    <span class="error-msg">Please select a date in the future.</span>
+                </div>
+            </div>
+            <div class="form-group textarea-group">
+                <textarea id="message" name="message" placeholder=" " rows="2" class="form-control"></textarea>
+                <label for="message" class="floating-label">Message (Optional)</label>
+            </div>
+            <div class="form-actions text-center">
+                <button type="submit" class="btn btn-primary submit-btn" style="width: 100%;">
+                    <span>Request Appointment</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </form>
+        <div class="form-success-overlay">
+            <div class="success-box glass-card">
+                <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h3>Request Received!</h3>
+                <p>A care planner will phone you at <strong id="userPhone"></strong> shortly to finalize your slot.</p>
+                <button type="button" class="btn btn-primary close-success-btn"><span>Close</span></button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 

@@ -402,6 +402,8 @@ hamburger.addEventListener('click', () => {
     let autoSlideInterval;
 
     function showSlide(index) {
+        if (slides.length === 0) return;
+        
         // Handle index wrap around
         if (index >= slides.length) currentSlide = 0;
         else if (index < 0) currentSlide = slides.length - 1;
@@ -535,18 +537,21 @@ hamburger.addEventListener('click', () => {
     }
 
     // Close when clicking empty dark overlay container
-    lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
+    if (lightbox) {
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+    }
 
     // Keyboard support for Lightbox modal
     document.addEventListener("keydown", (e) => {
-        if (!lightbox.classList.contains("open")) return;
-        if (e.key === "Escape") closeLightbox();
-        if (e.key === "ArrowRight") lightboxNext.click();
-        if (e.key === "ArrowLeft") lightboxPrev.click();
+        if (lightbox && lightbox.classList.contains("open")) {
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowRight" && lightboxNext) lightboxNext.click();
+            if (e.key === "ArrowLeft" && lightboxPrev) lightboxPrev.click();
+        }
     });
 
     /* ==========================================================================
@@ -556,6 +561,34 @@ hamburger.addEventListener('click', () => {
     const successOverlay = document.querySelector(".form-success-overlay");
     const closeSuccessBtn = document.querySelector(".close-success-btn");
     
+    // Modal Open/Close Logic
+    const globalModal = document.getElementById("globalAppointmentModal");
+    const closeGlobalModal = document.getElementById("closeGlobalModal");
+    const floatingAppBtn = document.getElementById("floatingAppBtn");
+    
+    function openAppointmentModal(e) {
+        if(e) e.preventDefault();
+        globalModal.classList.add("open");
+        document.body.style.overflow = "hidden";
+    }
+    
+    function closeAppointmentModal() {
+        globalModal.classList.remove("open");
+        document.body.style.overflow = "";
+    }
+    
+    floatingAppBtn.addEventListener("click", openAppointmentModal);
+    closeGlobalModal.addEventListener("click", closeAppointmentModal);
+    
+    // Close modal on outside click
+    globalModal.addEventListener("click", (e) => {
+        if(e.target === globalModal) closeAppointmentModal();
+    });
+
+    // Intercept all "Book Appointment" links
+    document.querySelectorAll('a[href*="#appointment"]').forEach(link => {
+        link.addEventListener("click", openAppointmentModal);
+    });
     // Set minimum preferred booking date to tomorrow
     const dateInput = document.getElementById("date");
     if (dateInput) {
