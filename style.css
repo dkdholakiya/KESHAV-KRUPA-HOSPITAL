@@ -2603,7 +2603,7 @@ body.hovered-element .custom-cursor-follower {
 
 .back-to-top {
     position: fixed;
-    bottom: 30px;
+    bottom: 90px; /* Above the appointment button */
     right: 30px;
     width: 50px;
     height: 50px;
@@ -2692,7 +2692,7 @@ html, body {
 
 .floating-appointment-btn {
     position: fixed;
-    bottom: 90px; /* Above the back-to-top button */
+    bottom: 30px; /* Initially at the bottom corner */
     right: 30px;
     width: 50px;
     height: 50px;
@@ -2707,7 +2707,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     animation: pulse-ring 2s infinite;
 }
 
@@ -2805,7 +2805,7 @@ html, body {
         padding: 30px 20px;
     }
     .floating-appointment-btn {
-        bottom: 80px;
+        bottom: 20px;
         right: 20px;
         width: 45px;
         height: 45px;
@@ -2813,7 +2813,7 @@ html, body {
     }
     .back-to-top {
         right: 20px;
-        bottom: 20px;
+        bottom: 80px;
         width: 45px;
         height: 45px;
     }
