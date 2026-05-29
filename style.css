@@ -601,6 +601,7 @@ body.hovered-element .custom-cursor-follower {
 
 .mobile-link:hover i,
 .mobile-link.active i {
+    margin-left: 10px;
     transform: scale(1.1);
 }
 
