@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    KESHAVKRUPA HOSPITAL - PREMIER APPLICATION JAVASCRIPT
    ========================================================================== */
 
@@ -80,10 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function triggerHeroAnimations() {
         if (!isGsapAvailable) return;
+        
+        // Suppress warnings for missing targets on subpages (e.g. .scroll-down doesn't exist on about.html)
+        gsap.config({ nullTargetWarn: false });
+        
         const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
         
-        tl.fromTo(".navbar", { y: -50, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 })
-          .fromTo(".hero-brand-card", { scale: 0.96, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5 }, "-=0.8")
+        tl.fromTo(".hero-brand-card", { scale: 0.96, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5 })
           .fromTo(".hero-main-title", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5 }, "-=1.0")
           .fromTo(".anim-fade", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.15 }, "-=1.2")
           .fromTo(".hero-doctor-img", { scale: 1.1, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.8 }, "-=1.5")
@@ -108,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
             navbar.classList.remove("scrolled");
         }
         
-        updateActiveNavLink();
         updateScrollProgressBar();
     });
 
@@ -157,27 +159,7 @@ hamburger.addEventListener('click', () => {
         }
     });
 
-    // Update current active link based on scroll position
-    function updateActiveNavLink() {
-        let currentSection = "";
-        const sections = document.querySelectorAll("section");
-        const scrollPos = window.scrollY + 150; // offset for nav height
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute("id");
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${currentSection}`) {
-                link.classList.add("active");
-            }
-        });
-    }
 
     // Scroll progress bar indicator and Back to top progress
     const backToTopBtn = document.querySelector(".back-to-top");
