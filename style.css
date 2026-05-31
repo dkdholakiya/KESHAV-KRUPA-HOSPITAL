@@ -1730,40 +1730,6 @@ body.hovered-element .custom-cursor-follower {
 }
 
 
-
-/* ==========================================================================
-   11. FACILITIES SECTION
-   ========================================================================== */
-
-.facilities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-.facility-item {
-    padding: 30px 20px;
-    text-align: center;
-}
-
-.facility-icon {
-    font-size: 2.2rem;
-    color: var(--primary);
-    margin-bottom: 15px;
-}
-
-.facility-item h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--primary-dark);
-}
-
-.facility-item:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: 0 15px 30px rgba(0, 122, 122, 0.08);
-}
-
 /* ==========================================================================
    12. TESTIMONIAL SECTION
    ========================================================================== */
