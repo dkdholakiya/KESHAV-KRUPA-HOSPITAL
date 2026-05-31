@@ -391,77 +391,10 @@ hamburger.addEventListener('click', () => {
     }
 
     /* ==========================================================================
-       5. TESTIMONIALS SLIDER CAROUSEL
+       5. TESTIMONIALS MARQUEE SECTION
+       (Purged unused JS slider carousel logic. The new marquee section uses pure,
+       high-performance, hardware-accelerated CSS keyframe animations instead.)
        ========================================================================== */
-    const slides = document.querySelectorAll(".testimonial-slide");
-    const dots = document.querySelectorAll(".slide-dots .dot");
-    const prevBtn = document.querySelector(".prev-btn");
-    const nextBtn = document.querySelector(".next-btn");
-    
-    let currentSlide = 0;
-    let autoSlideInterval;
-
-    function showSlide(index) {
-        if (slides.length === 0) return;
-        
-        // Handle index wrap around
-        if (index >= slides.length) currentSlide = 0;
-        else if (index < 0) currentSlide = slides.length - 1;
-        else currentSlide = index;
-
-        // Reset active classes
-        slides.forEach(slide => slide.classList.remove("active"));
-        dots.forEach(dot => dot.classList.remove("active"));
-
-        // Activate target slide and dot
-        slides[currentSlide].classList.add("active");
-        dots[currentSlide].classList.add("active");
-        
-        // GSAP animate text reveal on slide change
-        gsap.fromTo(slides[currentSlide].querySelector(".testimonial-text"), 
-            { opacity: 0, y: 15 }, 
-            { opacity: 1, y: 0, duration: 0.8 }
-        );
-        gsap.fromTo(slides[currentSlide].querySelector(".patient-info"), 
-            { opacity: 0, y: 10 }, 
-            { opacity: 1, y: 0, duration: 0.6 }, 
-            "-=0.5"
-        );
-    }
-
-    function startAutoSlide() {
-        stopAutoSlide();
-        autoSlideInterval = setInterval(() => {
-            showSlide(currentSlide + 1);
-        }, 6000); // 6s duration
-    }
-
-    function stopAutoSlide() {
-        if (autoSlideInterval) clearInterval(autoSlideInterval);
-    }
-
-    // Nav controls listeners
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener("click", () => {
-            showSlide(currentSlide + 1);
-            startAutoSlide();
-        });
-        
-        prevBtn.addEventListener("click", () => {
-            showSlide(currentSlide - 1);
-            startAutoSlide();
-        });
-    }
-
-    dots.forEach((dot, idx) => {
-        dot.addEventListener("click", () => {
-            showSlide(idx);
-            startAutoSlide();
-        });
-    });
-
-    // Start auto slide lifecycle
-    startAutoSlide();
 
     /* ==========================================================================
        6. GALLERY LIGHTBOX MODAL

@@ -1731,111 +1731,202 @@ body.hovered-element .custom-cursor-follower {
 
 
 /* ==========================================================================
-   12. TESTIMONIAL SECTION
+   12. TESTIMONIAL MARQUEE SECTION (Modern SaaS Landing Page Style)
    ========================================================================== */
 
-.testimonials-slider-container {
-    max-width: 800px;
-    margin: 0 auto;
+.testimonial-section {
+    background-color: var(--bg-white);
+    padding: 40px 0;
+    overflow: hidden;
+    width: 100%;
     position: relative;
-    padding: 10px 0;
-}
-
-.testimonial-slide {
-    padding: 50px;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.testimonial-slide.active {
-    display: block;
-    opacity: 1;
-}
-
-.star-rating {
-    display: flex;
-    gap: 5px;
-    color: var(--accent);
-    font-size: 1rem;
-    margin-bottom: 25px;
-}
-
-.testimonial-text {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--primary-dark);
-    line-height: 1.6;
-    margin-bottom: 30px;
-    position: relative;
-}
-
-.patient-info {
     display: flex;
     flex-direction: column;
+    gap: 20px;
 }
 
-.patient-name {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text-dark);
+.testimonial-header-container {
+    width: 100%;
+    padding: 0 20px;
 }
 
-.patient-location {
-    font-size: 0.8rem;
-    color: var(--text-muted);
+.testimonial-section .section-header {
+    margin-bottom: 10px;
 }
 
-/* Slider Controls */
-.slider-controls {
+.testimonial-section .section-title {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+}
+
+.testimonial-section .section-subtitle {
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+}
+
+.testimonial-marquee-row {
+    position: relative;
+    overflow: hidden;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 30px;
-    padding: 0 10px;
+    width: 100%;
+    padding: 16px 0;
+    /* Edge fade gradient mask */
+    mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
 }
 
-.slide-control-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    border: 1px solid var(--primary-dark);
-    color: var(--primary-dark);
+.testimonial-marquee-track {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--transition-quick);
+    gap: 24px;
+    width: max-content;
+    will-change: transform;
 }
 
-.slide-control-btn:hover {
-    background-color: var(--primary-dark);
-    color: var(--bg-white);
+/* Row Directions & Timing */
+.marquee-left .testimonial-marquee-track {
+    animation: marquee-l 25s linear infinite;
 }
 
-.slide-dots {
+.marquee-right .testimonial-marquee-track {
+    animation: marquee-r 25s linear infinite;
+}
+
+/* Pause on hover */
+.testimonial-marquee-row:hover .testimonial-marquee-track {
+    animation-play-state: paused;
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 16px;
+    width: 480px;
+    min-width: 480px;
+    max-width: 480px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02), 0 2px 8px rgba(0, 0, 0, 0.01);
     display: flex;
+    flex-direction: column;
     gap: 8px;
-}
-
-.slide-dots .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #cbd5e1;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
     cursor: pointer;
-    transition: var(--transition-quick);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.slide-dots .dot.active {
-    background-color: var(--primary);
-    width: 24px;
-    border-radius: 4px;
+.testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 122, 122, 0.08), 0 4px 12px rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 122, 122, 0.3);
 }
 
-@media (max-width: 600px) {
-    .testimonial-slide { padding: 30px 20px; }
-    .testimonial-text { font-size: 1rem; }
+/* Profile details */
+.card-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.profile-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.verified-icon {
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.profile-username {
+    font-size: 0.78rem;
+    color: #6B7280;
+    font-weight: 500;
+}
+
+/* Text style matching Twitter/X */
+.testimonial-card .testimonial-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #111827;
+    font-weight: 400;
+    margin: 0;
+    text-align: justify;
+}
+
+/* Keyframes - smooth continuous scroll */
+@keyframes marquee-l {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+@keyframes marquee-r {
+    0% {
+        transform: translate3d(-50%, 0, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .testimonial-section {
+        padding: 30px 0;
+        gap: 16px;
+    }
+    .testimonial-marquee-row {
+        padding: 8px 0;
+        mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    }
+    .testimonial-card {
+        width: 85vw;
+        min-width: unset;
+        max-width: 320px;
+        padding: 16px;
+        gap: 8px;
+        border-radius: 12px;
+    }
+    .profile-img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-marquee-row {
+        mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+    }
+    .testimonial-card {
+        width: 88vw;
+        padding: 14px;
+    }
+    .profile-img {
+        width: 36px;
+        height: 36px;
+    }
 }
 
 /* ==========================================================================
