@@ -2546,25 +2546,11 @@ body.hovered-element .custom-cursor-follower {
 
 /* Elegant Fading Edges to hide image entrance and exit */
 .gallery-fade-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
-    z-index: 10;
-    pointer-events: none;
+    display: none;
 }
 
 .gallery-fade-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    background: linear-gradient(to top, #ffffff 0%, transparent 100%);
-    z-index: 10;
-    pointer-events: none;
+    display: none;
 }
 
 /* Responsive Overrides */
@@ -2913,146 +2899,51 @@ body.hovered-element .custom-cursor-follower {
     width: 100%;
 }
 
-.map-tabs-container {
+.map-container {
     width: 100%;
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-    background: var(--bg-white);
-    border: 1px solid rgba(0, 122, 122, 0.06);
-    box-shadow: 0 15px 35px rgba(0, 122, 122, 0.04);
-}
-
-.map-tabs-nav {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    padding: 15px;
-    background: var(--bg-light);
-    border-bottom: 1px solid rgba(0, 122, 122, 0.08);
-}
-
-.map-tab-btn {
-    padding: 10px 24px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: var(--transition-quick);
-}
-
-.map-tab-btn:hover {
-    color: var(--primary-dark);
-    background: rgba(0, 122, 122, 0.05);
-}
-
-.map-tab-btn.active {
-    color: var(--bg-white);
-    background: var(--primary);
-    box-shadow: 0 4px 12px rgba(0, 122, 122, 0.15);
-}
-
-.map-tab-content-wrapper {
-    position: relative;
     height: 480px;
-    width: 100%;
-}
-
-.map-tab-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-    z-index: 1;
-}
-
-.map-tab-content.active {
-    opacity: 1;
-    visibility: visible;
-    z-index: 2;
-}
-
-/* Vector Art Map elements and interactive features */
-.svg-map-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
-.stylized-map {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.stylized-map rect {
     transition: var(--transition-smooth);
 }
 
-.map-hospital-pin {
-    cursor: pointer;
-}
-
-.map-hospital-pin circle {
-    transform-origin: 450px 220px;
-}
-
-.map-landmark-group {
-    transition: var(--transition-quick);
-    cursor: pointer;
-}
-
-.map-landmark-group:hover rect,
-.map-landmark-group:hover circle {
-    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.08));
-    transform: translateY(-2px);
-}
-
-/* Interactive SVG Map Tooltips */
-.map-tooltip {
-    position: absolute;
-    background: var(--text-dark);
-    color: var(--bg-white);
-    padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate(-50%, -100%) scale(0.9);
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 10;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    white-space: nowrap;
-}
-
-.map-tooltip::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 5px 5px 0;
-    border-style: solid;
-    border-color: var(--text-dark) transparent transparent;
-}
-
-.map-tooltip.visible {
-    opacity: 1;
-    transform: translate(-50%, -120%) scale(1);
-}
-
+/* Contact Section Responsiveness */
 @media (max-width: 1024px) {
     .contact-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .contact-info-title h3 {
+        font-size: 1.5rem;
+    }
+
+    .quick-inquiry-panel {
+        padding: 30px;
+    }
+
+    .map-container {
+        height: 380px;
+    }
+}
+
+@media (max-width: 576px) {
+    .quick-inquiry-panel {
+        padding: 20px;
+    }
+
+    .contact-card {
+        padding: 20px;
+        gap: 12px;
+    }
+
+    .map-container {
+        height: 300px;
     }
 }
 
@@ -3147,6 +3038,63 @@ body.hovered-element .custom-cursor-follower {
     opacity: 1;
     color: var(--accent);
     padding-left: 5px;
+}
+
+/* Newsletter inline styling in footer column */
+.footer-subscribe-form {
+    margin-bottom: 25px;
+    width: 100%;
+}
+
+.subscribe-capsule {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50px;
+    padding: 4px 4px 4px 18px;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+.subscribe-capsule:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 15px rgba(229, 182, 62, 0.08);
+}
+
+.subscribe-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--bg-white);
+    font-size: 0.85rem;
+    flex: 1;
+    width: 100%;
+    padding-right: 10px;
+}
+
+.subscribe-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.subscribe-btn {
+    background: #C8231B !important;
+    /* solid crimson red as shown in image */
+    border: none !important;
+    border-radius: 50px !important;
+    color: var(--bg-white) !important;
+    padding: 10px 20px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.5px !important;
+    cursor: pointer;
+    transition: var(--transition-quick) !important;
+}
+
+.subscribe-btn:hover {
+    background: #ab1d17 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(200, 35, 27, 0.3);
 }
 
 /* Emergency line specific */
