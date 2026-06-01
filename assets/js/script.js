@@ -653,4 +653,141 @@ hamburger.addEventListener('click', () => {
         });
     });
 
+    /* ==========================================================================
+       9. REDESIGNED CONTACT SECTION INTERACTIVITY
+       ========================================================================== */
+    // Map Tabs Navigation
+    const tabBtns = document.querySelectorAll(".map-tab-btn");
+    const tabContents = document.querySelectorAll(".map-tab-content");
+    
+    tabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const targetTab = btn.getAttribute("data-tab");
+            
+            // Toggle buttons
+            tabBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            
+            // Toggle contents with smooth GSAP fade
+            tabContents.forEach(content => {
+                if (content.id === targetTab) {
+                    content.classList.add("active");
+                    if (typeof gsap !== "undefined") {
+                        gsap.fromTo(content, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.4 });
+                    }
+                } else {
+                    content.classList.remove("active");
+                }
+            });
+        });
+    });
+
+    // Custom Tooltip for SVG Art Map
+    const mapWrapper = document.querySelector(".svg-map-wrapper");
+    const tooltip = document.getElementById("mapTooltip");
+    const landmarks = document.querySelectorAll(".map-landmark-group, .map-hospital-pin");
+    
+    if (mapWrapper && tooltip) {
+        landmarks.forEach(landmark => {
+            landmark.addEventListener("mousemove", (e) => {
+                const rect = mapWrapper.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                tooltip.innerText = landmark.getAttribute("data-tooltip");
+                tooltip.style.left = x + "px";
+                tooltip.style.top = y + "px";
+                tooltip.classList.add("visible");
+            });
+            
+            landmark.addEventListener("mouseleave", () => {
+                tooltip.classList.remove("visible");
+            });
+        });
+    }
+
+    // Quick inquiry Form validation
+    const quickForm = document.getElementById("quickContactForm");
+    if (quickForm) {
+        const quickInputs = quickForm.querySelectorAll("input[required], textarea[required]");
+        
+        quickInputs.forEach(input => {
+            input.addEventListener("blur", () => {
+                validateQuickField(input);
+            });
+            input.addEventListener("input", () => {
+                if (input.closest(".form-group").classList.contains("invalid")) {
+                    validateQuickField(input);
+                }
+            });
+        });
+        
+        function validateQuickField(field) {
+            let isValid = true;
+            const val = field.value.trim();
+            if (field.id === "quick-name") {
+                isValid = val.length >= 2;
+            } else if (field.id === "quick-phone") {
+                isValid = validatePhone(val);
+            } else if (field.id === "quick-email") {
+                isValid = validateEmail(val);
+            } else if (field.id === "quick-message") {
+                isValid = val.length >= 10;
+            }
+            setValidity(field, isValid);
+            return isValid;
+        }
+        
+        quickForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let isFormValid = true;
+            quickInputs.forEach(input => {
+                if (!validateQuickField(input)) {
+                    isFormValid = false;
+                }
+            });
+            
+            if (isFormValid) {
+                const panel = quickForm.closest(".quick-inquiry-panel");
+                if (typeof gsap !== "undefined") {
+                    gsap.to(quickForm, {
+                        opacity: 0,
+                        y: -20,
+                        duration: 0.4,
+                        onComplete: showSuccessMessage
+                    });
+                } else {
+                    showSuccessMessage();
+                }
+                
+                function showSuccessMessage() {
+                    quickForm.style.display = "none";
+                    const successHTML = `
+                        <div class="quick-success-box" style="text-align: center; padding: 30px 0;">
+                            <div style="font-size: 3.5rem; color: var(--primary); margin-bottom: 20px;"><i class="fa-solid fa-circle-check"></i></div>
+                            <h3 style="font-size: 1.4rem; color: var(--primary-dark); margin-bottom: 10px;">Message Sent!</h3>
+                            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">Thank you for writing. Our patient care officer will contact you within 15 minutes.</p>
+                        </div>
+                    `;
+                    panel.insertAdjacentHTML("beforeend", successHTML);
+                    const successBox = panel.querySelector(".quick-success-box");
+                    if (typeof gsap !== "undefined") {
+                        gsap.fromTo(successBox, { scale: 0.8, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" });
+                    }
+                }
+            }
+        });
+    }
+
+    // Attach custom cursor hovered class listeners to new elements
+    const newHoverables = document.querySelectorAll(".map-tab-btn, .contact-card, .quick-contact-form input, .quick-contact-form textarea, .quick-contact-form button");
+    newHoverables.forEach(item => {
+        item.addEventListener("mouseenter", () => {
+            document.body.classList.add("hovered-element");
+        });
+        item.addEventListener("mouseleave", () => {
+            document.body.classList.remove("hovered-element");
+        });
+    });
+
 });
