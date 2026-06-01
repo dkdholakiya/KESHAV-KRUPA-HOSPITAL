@@ -3,10 +3,10 @@
    ========================================================================== */
 
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // Safety check: check if GSAP and ScrollTrigger are loaded successfully
     const isGsapAvailable = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
-    
+
     if (isGsapAvailable) {
         gsap.registerPlugin(ScrollTrigger);
     }
@@ -16,32 +16,32 @@ document.addEventListener("DOMContentLoaded", () => {
        ========================================================================== */
     const cursor = document.querySelector(".custom-cursor");
     const follower = document.querySelector(".custom-cursor-follower");
-    
+
     let mouseX = 0, mouseY = 0; // Current mouse coords
     let posX = 0, posY = 0;     // Follower lag coords
-    
+
     document.addEventListener("mousemove", (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        
+
         // Instant cursor tracking
         cursor.style.left = mouseX + "px";
         cursor.style.top = mouseY + "px";
     });
-    
+
     // Smooth follower movement using requestAnimationFrame
     function updateFollower() {
         // Lag math: target - current * ease-factor
         posX += (mouseX - posX) * 0.12;
         posY += (mouseY - posY) * 0.12;
-        
+
         follower.style.left = posX + "px";
         follower.style.top = posY + "px";
-        
+
         requestAnimationFrame(updateFollower);
     }
     updateFollower();
-    
+
     // Hover micro-interactions for links/buttons/cards
     const hoverables = document.querySelectorAll("a, button, .service-card, .why-card, .doctor-card, .facility-item, .gallery-item-wrapper, .dot, input, select, textarea");
     hoverables.forEach(item => {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
        2. PRELOADER & HERO ENTRANCE TRIGGERS
        ========================================================================== */
     const loader = document.getElementById("loader");
-    
+
     window.addEventListener("load", () => {
         // Delay preloader close for premium luxury presentation
         setTimeout(() => {
@@ -80,18 +80,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function triggerHeroAnimations() {
         if (!isGsapAvailable) return;
-        
+
         // Suppress warnings for missing targets on subpages (e.g. .scroll-down doesn't exist on about.html)
         gsap.config({ nullTargetWarn: false });
-        
+
         const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
-        
+
         tl.fromTo(".hero-brand-card", { scale: 0.96, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.5 })
-          .fromTo(".hero-main-title", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5 }, "-=1.0")
-          .fromTo(".anim-fade", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.15 }, "-=1.2")
-          .fromTo(".hero-doctor-img", { scale: 1.1, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.8 }, "-=1.5")
-          .fromTo(".floating-badge", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, stagger: 0.15, ease: "back.out(1.5)" }, "-=1.2")
-          .fromTo(".scroll-down", { opacity: 0 }, { opacity: 1, duration: 1 }, "-=0.5");
+            .fromTo(".hero-main-title", { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 1.5 }, "-=1.0")
+            .fromTo(".anim-fade", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.15 }, "-=1.2")
+            .fromTo(".hero-doctor-img", { scale: 1.1, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.8 }, "-=1.5")
+            .fromTo(".floating-badge", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 1, stagger: 0.15, ease: "back.out(1.5)" }, "-=1.2")
+            .fromTo(".scroll-down", { opacity: 0 }, { opacity: 1, duration: 1 }, "-=0.5");
     }
 
     /* ==========================================================================
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mobileNav = document.querySelector(".mobile-nav");
     const mobileLinks = document.querySelectorAll(".mobile-link");
     const navLinks = document.querySelectorAll(".nav-link");
-    
+
     // Shrink and blur navbar on scroll
     window.addEventListener("scroll", () => {
         if (window.scrollY > 50) {
@@ -110,16 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             navbar.classList.remove("scrolled");
         }
-        
+
         updateScrollProgressBar();
     });
 
-// Hamburger drawer controls
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileNav.classList.toggle('open');
-    document.body.classList.toggle('overflow-hidden');
-});
+    // Hamburger drawer controls
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open');
+        document.body.classList.toggle('overflow-hidden');
+    });
 
     const mobileCloseIcon = document.querySelector('.mobile-close-icon');
     if (mobileCloseIcon) {
@@ -151,7 +151,7 @@ hamburger.addEventListener('click', () => {
     document.addEventListener('click', (e) => {
         const isClickInsideNav = mobileNav.contains(e.target);
         const isClickOnHamburger = hamburger.contains(e.target);
-        
+
         if (!isClickInsideNav && !isClickOnHamburger && mobileNav.classList.contains('open')) {
             hamburger.classList.remove('open');
             mobileNav.classList.remove('open');
@@ -164,25 +164,25 @@ hamburger.addEventListener('click', () => {
     // Scroll progress bar indicator and Back to top progress
     const backToTopBtn = document.querySelector(".back-to-top");
     const progressCircle = document.querySelector(".progress-ring-circle");
-    
+
     function updateScrollProgressBar() {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercent = scrollTop / docHeight;
-        
+
         // Update top horizontal progress bar
         const horizontalProgress = document.querySelector(".scroll-progress-bar");
         if (horizontalProgress) {
             horizontalProgress.style.width = (scrollPercent * 100) + "%";
         }
-        
+
         // Show/Hide back to top button
         if (scrollTop > 400) {
             backToTopBtn.classList.add("visible");
         } else {
             backToTopBtn.classList.remove("visible");
         }
-        
+
         // Update back to top radial progress ring outline
         if (progressCircle) {
             const radius = progressCircle.r.baseVal.value;
@@ -205,7 +205,7 @@ hamburger.addEventListener('click', () => {
             const subtitle = header.querySelector(".section-subtitle");
             const title = header.querySelector(".section-title");
             const divider = header.querySelector(".section-divider");
-            
+
             const headerTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: header,
@@ -213,7 +213,7 @@ hamburger.addEventListener('click', () => {
                     toggleActions: "play none none none"
                 }
             });
-            
+
             if (subtitle) headerTl.from(subtitle, { opacity: 0, y: 15, duration: 0.8 });
             if (title) headerTl.from(title, { opacity: 0, y: 25, duration: 1 }, "-=0.6");
             if (divider) headerTl.from(divider, { scaleX: 0, duration: 0.8, ease: "power2.out" }, "-=0.6");
@@ -222,7 +222,7 @@ hamburger.addEventListener('click', () => {
         // 2. About section left details and side visual
         const aboutLeft = document.querySelector(".about-left");
         const aboutSideVisual = document.querySelector(".about-side-visual");
-        
+
         if (aboutLeft) {
             gsap.set(aboutLeft, { x: -40, opacity: 0 });
             gsap.to(aboutLeft, {
@@ -236,7 +236,7 @@ hamburger.addEventListener('click', () => {
                 }
             });
         }
-        
+
         if (aboutSideVisual) {
             gsap.set(aboutSideVisual, { x: 40, opacity: 0 });
             gsap.to(aboutSideVisual, {
@@ -254,12 +254,12 @@ hamburger.addEventListener('click', () => {
         // 3. Statistics Increment Counters
         counterNumbers.forEach(counter => {
             const target = parseInt(counter.getAttribute("data-target"), 10);
-            
-            gsap.fromTo(counter, 
-                { innerText: 0 }, 
-                { 
-                    innerText: target, 
-                    duration: 2, 
+
+            gsap.fromTo(counter,
+                { innerText: 0 },
+                {
+                    innerText: target,
+                    duration: 2,
                     ease: "power2.out",
                     snap: { innerText: 1 },
                     scrollTrigger: {
@@ -267,7 +267,7 @@ hamburger.addEventListener('click', () => {
                         start: "top 85%",
                         toggleActions: "play none none none"
                     },
-                    onUpdate: function() {
+                    onUpdate: function () {
                         counter.innerText = Math.ceil(this.targets()[0].innerText);
                     }
                 }
@@ -353,7 +353,7 @@ hamburger.addEventListener('click', () => {
         // 7. Contact Section Info and Map reveal
         const contactInfo = document.querySelector(".contact-info-panel");
         const contactMap = document.querySelector(".contact-map-container");
-        
+
         if (contactInfo) {
             gsap.set(contactInfo, { x: -40, opacity: 0 });
             gsap.to(contactInfo, {
@@ -367,7 +367,7 @@ hamburger.addEventListener('click', () => {
                 }
             });
         }
-        
+
         if (contactMap) {
             gsap.set(contactMap, { x: 40, opacity: 0 });
             gsap.to(contactMap, {
@@ -406,7 +406,7 @@ hamburger.addEventListener('click', () => {
     const lightboxClose = document.querySelector(".lightbox-close");
     const lightboxPrev = document.querySelector(".lightbox-prev");
     const lightboxNext = document.querySelector(".lightbox-next");
-    
+
     let activeImageIndex = 0;
     const galleryImagesArray = [];
 
@@ -415,7 +415,7 @@ hamburger.addEventListener('click', () => {
         const img = item.querySelector(".gallery-img");
         const title = item.querySelector(".gallery-info h3").innerText;
         const sub = item.querySelector(".gallery-info span").innerText;
-        
+
         galleryImagesArray.push({
             src: img.getAttribute("src"),
             alt: img.getAttribute("alt"),
@@ -432,7 +432,7 @@ hamburger.addEventListener('click', () => {
         updateLightboxContent();
         lightbox.classList.add("open");
         document.body.classList.add("overflow-hidden");
-        
+
         gsap.fromTo(".lightbox-content", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5 });
     }
 
@@ -452,7 +452,7 @@ hamburger.addEventListener('click', () => {
     if (lightboxClose) {
         lightboxClose.addEventListener("click", closeLightbox);
     }
-    
+
     if (lightboxNext) {
         lightboxNext.addEventListener("click", () => {
             activeImageIndex = (activeImageIndex + 1) % galleryImagesArray.length;
@@ -493,29 +493,29 @@ hamburger.addEventListener('click', () => {
     const appForm = document.getElementById("appointmentForm");
     const successOverlay = document.querySelector(".form-success-overlay");
     const closeSuccessBtn = document.querySelector(".close-success-btn");
-    
+
     // Modal Open/Close Logic
     const globalModal = document.getElementById("globalAppointmentModal");
     const closeGlobalModal = document.getElementById("closeGlobalModal");
     const floatingAppBtn = document.getElementById("floatingAppBtn");
-    
+
     function openAppointmentModal(e) {
-        if(e) e.preventDefault();
+        if (e) e.preventDefault();
         globalModal.classList.add("open");
         document.body.style.overflow = "hidden";
     }
-    
+
     function closeAppointmentModal() {
         globalModal.classList.remove("open");
         document.body.style.overflow = "";
     }
-    
+
     floatingAppBtn.addEventListener("click", openAppointmentModal);
     closeGlobalModal.addEventListener("click", closeAppointmentModal);
-    
+
     // Close modal on outside click
     globalModal.addEventListener("click", (e) => {
-        if(e.target === globalModal) closeAppointmentModal();
+        if (e.target === globalModal) closeAppointmentModal();
     });
 
     // Intercept all "Book Appointment" links
@@ -561,7 +561,7 @@ hamburger.addEventListener('click', () => {
         input.addEventListener("blur", () => {
             validateSingleField(input);
         });
-        
+
         input.addEventListener("input", () => {
             const group = input.closest(".form-group");
             if (group.classList.contains("invalid")) {
@@ -599,7 +599,7 @@ hamburger.addEventListener('click', () => {
     // Intercept form submission
     appForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        
+
         let isFormValid = true;
         inputsToValidate.forEach(input => {
             const isFieldValid = validateSingleField(input);
@@ -612,7 +612,7 @@ hamburger.addEventListener('click', () => {
             // Retrieve values for dynamic modal content
             const phoneVal = document.getElementById("phone").value;
             document.getElementById("userPhone").innerText = phoneVal;
-            
+
             // Open beautiful preloaded success card modal using GSAP
             successOverlay.classList.add("open");
             gsap.fromTo(".success-box", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" });
@@ -624,7 +624,7 @@ hamburger.addEventListener('click', () => {
         closeSuccessBtn.addEventListener("click", () => {
             successOverlay.classList.remove("open");
             appForm.reset();
-            
+
             // Force reset validity styling status classes
             inputsToValidate.forEach(input => {
                 input.closest(".form-group").classList.remove("invalid");
@@ -640,7 +640,7 @@ hamburger.addEventListener('click', () => {
         const question = item.querySelector('.faq-question');
         question.addEventListener('click', () => {
             const isActive = item.classList.contains('active');
-            
+
             // Close all other items
             faqItems.forEach(otherItem => {
                 otherItem.classList.remove('active');
@@ -659,15 +659,15 @@ hamburger.addEventListener('click', () => {
     // Map Tabs Navigation
     const tabBtns = document.querySelectorAll(".map-tab-btn");
     const tabContents = document.querySelectorAll(".map-tab-content");
-    
+
     tabBtns.forEach(btn => {
         btn.addEventListener("click", () => {
             const targetTab = btn.getAttribute("data-tab");
-            
+
             // Toggle buttons
             tabBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-            
+
             // Toggle contents with smooth GSAP fade
             tabContents.forEach(content => {
                 if (content.id === targetTab) {
@@ -686,20 +686,20 @@ hamburger.addEventListener('click', () => {
     const mapWrapper = document.querySelector(".svg-map-wrapper");
     const tooltip = document.getElementById("mapTooltip");
     const landmarks = document.querySelectorAll(".map-landmark-group, .map-hospital-pin");
-    
+
     if (mapWrapper && tooltip) {
         landmarks.forEach(landmark => {
             landmark.addEventListener("mousemove", (e) => {
                 const rect = mapWrapper.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
+
                 tooltip.innerText = landmark.getAttribute("data-tooltip");
                 tooltip.style.left = x + "px";
                 tooltip.style.top = y + "px";
                 tooltip.classList.add("visible");
             });
-            
+
             landmark.addEventListener("mouseleave", () => {
                 tooltip.classList.remove("visible");
             });
@@ -710,7 +710,7 @@ hamburger.addEventListener('click', () => {
     const quickForm = document.getElementById("quickContactForm");
     if (quickForm) {
         const quickInputs = quickForm.querySelectorAll("input[required], textarea[required]");
-        
+
         quickInputs.forEach(input => {
             input.addEventListener("blur", () => {
                 validateQuickField(input);
@@ -721,7 +721,7 @@ hamburger.addEventListener('click', () => {
                 }
             });
         });
-        
+
         function validateQuickField(field) {
             let isValid = true;
             const val = field.value.trim();
@@ -737,7 +737,7 @@ hamburger.addEventListener('click', () => {
             setValidity(field, isValid);
             return isValid;
         }
-        
+
         quickForm.addEventListener("submit", (e) => {
             e.preventDefault();
             let isFormValid = true;
@@ -746,7 +746,7 @@ hamburger.addEventListener('click', () => {
                     isFormValid = false;
                 }
             });
-            
+
             if (isFormValid) {
                 const panel = quickForm.closest(".quick-inquiry-panel");
                 if (typeof gsap !== "undefined") {
@@ -759,7 +759,7 @@ hamburger.addEventListener('click', () => {
                 } else {
                     showSuccessMessage();
                 }
-                
+
                 function showSuccessMessage() {
                     quickForm.style.display = "none";
                     const successHTML = `
@@ -789,5 +789,142 @@ hamburger.addEventListener('click', () => {
             document.body.classList.remove("hovered-element");
         });
     });
+
+    /* ==========================================================================
+       10. INFINITE ALTERNATING VERTICAL MARQUEE GALLERY
+       ========================================================================== */
+    const galleryImages = [
+        {
+            src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80",
+            alt: "Doctor Consulting Patient",
+            caption: "Expert Consultation - Compassionate Clinical Care"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
+            alt: "Modern Hospital Lobby",
+            caption: "Luxury Lobby - Welcoming and Sterile Environment"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80",
+            alt: "Medical Staff Teamwork",
+            caption: "Multidisciplinary Team - Collaborative Specialist Care"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+            alt: "Healthcare Technology",
+            caption: "Digital Vitals Monitoring - Precision Healthcare"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80",
+            alt: "Specialist Physician Portrait",
+            caption: "Clinical Specialists - Leaders in Modern Medicine"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80",
+            alt: "Advanced Diagnostics MRI",
+            caption: "High-Resolution MRI - State-of-the-Art Diagnostics"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80",
+            alt: "Patient Care Moment",
+            caption: "Warm Patient Care - Dedicated Nursing Staff"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?auto=format&fit=crop&w=800&q=80",
+            alt: "Modern Surgical Theatre",
+            caption: "Advanced Operating Suites - High-Fidelity Infrastructure"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=800&q=80",
+            alt: "Clinical Research Diagnostics Laboratory",
+            caption: "Diagnostic Laboratories - Rapid and Accurate Results"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=800&q=80",
+            alt: "Pediatric Consultation Care",
+            caption: "Pediatric Wellness - Gentle and Expert Care"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1586773860418-d37222d8fce2?auto=format&fit=crop&w=800&q=80",
+            alt: "State-of-the-Art Intensive Care Unit",
+            caption: "Intensive Care Unit (ICU) - 24/7 Critical Monitoring"
+        },
+        {
+            src: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=800&q=80",
+            alt: "Professional Diagnostic Consultation",
+            caption: "Outpatient Consulting Desk - Seamless Experience"
+        }
+    ];
+
+    const col1 = document.getElementById("galleryCol1");
+    const col2 = document.getElementById("galleryCol2");
+    const col3 = document.getElementById("galleryCol3");
+    const col4 = document.getElementById("galleryCol4");
+    const col5 = document.getElementById("galleryCol5");
+
+    function populateTrack(colElement, isReversed) {
+        if (!colElement) return;
+
+        let trackImages = [...galleryImages];
+        if (isReversed) {
+            trackImages.reverse();
+        }
+
+        // We repeat it 3 times to make the vertical height large enough for looping
+        const repeatedSet = [...trackImages, ...trackImages, ...trackImages];
+
+        colElement.innerHTML = repeatedSet.map(item => {
+            const originalIndex = galleryImages.findIndex(img => img.src === item.src);
+            return `
+            <div class="gallery-card-wrapper" data-index="${originalIndex}">
+                <img src="${item.src}" alt="${item.alt}" loading="lazy">
+            </div>
+            `;
+        }).join("");
+    }
+
+    if (col1 && col2 && col3 && col4 && col5) {
+        populateTrack(col1, false);
+        populateTrack(col2, true);
+        populateTrack(col3, false);
+        populateTrack(col4, true);
+        populateTrack(col5, false);
+
+        // Dynamic cursor hover reactions for vertical gallery cards
+        const galleryCards = document.querySelectorAll(".gallery-card-wrapper");
+        galleryCards.forEach(card => {
+            card.addEventListener("mouseenter", () => {
+                document.body.classList.add("hovered-element");
+            });
+            card.addEventListener("mouseleave", () => {
+                document.body.classList.remove("hovered-element");
+            });
+        });
+
+        // Wire click listeners using event delegation for performance
+        const galleryWrapper = document.querySelector(".vertical-gallery-wrapper");
+        if (galleryWrapper) {
+            galleryWrapper.addEventListener("click", (e) => {
+                const card = e.target.closest(".gallery-card-wrapper");
+                if (card) {
+                    const clickedIndex = parseInt(card.getAttribute("data-index"), 10);
+                    if (!isNaN(clickedIndex)) {
+                        // Repopulate lightbox global array for our vertical marquee set
+                        galleryImagesArray.length = 0;
+                        galleryImages.forEach(img => {
+                            galleryImagesArray.push({
+                                src: img.src,
+                                alt: img.alt,
+                                caption: img.caption
+                            });
+                        });
+
+                        activeImageIndex = clickedIndex;
+                        openLightbox();
+                    }
+                }
+            });
+        }
+    }
 
 });
