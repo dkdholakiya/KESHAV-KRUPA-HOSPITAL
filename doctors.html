@@ -134,86 +134,68 @@
 
         <!-- Doctor Grid Section -->
         <section class="doctors-detail section-padding">
-            <div class="container">
-                <div class="doctors-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                    
-                    <!-- Doctor 1 -->
-                    <div class="doctor-card glass-card">
-                        <div class="doc-image-wrapper">
-                            <img src="assets/images/doctor-1.jpg" alt="Dr. Rajesh Patel" class="doc-image">
-                            <div class="doc-overlay">
-                                <div class="doc-socials">
-                                    <a href="#" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    <a href="#" aria-label="Twitter Profile"><i class="fa-brands fa-twitter"></i></a>
-                                    <a href="#" aria-label="Send Email"><i class="fa-solid fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="doc-info" style="padding: 20px; text-align:center;">
-                            <h3 style="font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 5px;">Dr. Rajesh Patel</h3>
-                            <span class="doc-spec" style="display:block; color: var(--accent); font-weight:600; font-size:0.9rem; margin-bottom: 8px;">Chief Cardiologist</span>
-                            <span class="doc-exp" style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-award" style="margin-right: 5px;"></i> 18+ Years Experience</span>
+            <div class="doctors-detail-container">
+                
+                <!-- Doctor 1 -->
+                <div class="doctor-row-card">
+                    <div class="doctor-row-img-wrapper">
+                        <img src="assets/images/doctor-1.jpg" alt="Dr. Rajesh Patel" class="doctor-row-img">
+                    </div>
+                    <div class="doctor-row-info">
+                        <h2 class="doctor-row-name">Dr. Rajesh Patel</h2>
+                        <h4 class="doctor-row-spec">Chief Cardiologist — MD, DM (Cardiology)</h4>
+                        <p class="doctor-row-bio">Dr. Rajesh Patel is a pioneer in advanced interventional cardiology in Gandhinagar. He has successfully performed over 5,000 complex coronary angioplasties and is widely recognized for clinical excellence in heart failure management. A gold medalist from leading medical institutions, he brings 18+ years of dedicated cardiothoracic expertise to the community.</p>
+                        <div class="doctor-row-actions">
+                            <a href="index.html#appointment" class="btn-view-profile">View Profile</a>
                         </div>
                     </div>
-
-                    <!-- Doctor 2 -->
-                    <div class="doctor-card glass-card">
-                        <div class="doc-image-wrapper">
-                            <img src="assets/images/doctor-2.jpg" alt="Dr. Sneha Sharma" class="doc-image">
-                            <div class="doc-overlay">
-                                <div class="doc-socials">
-                                    <a href="#" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    <a href="#" aria-label="Twitter Profile"><i class="fa-brands fa-twitter"></i></a>
-                                    <a href="#" aria-label="Send Email"><i class="fa-solid fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="doc-info" style="padding: 20px; text-align:center;">
-                            <h3 style="font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 5px;">Dr. Sneha Sharma</h3>
-                            <span class="doc-spec" style="display:block; color: var(--accent); font-weight:600; font-size:0.9rem; margin-bottom: 8px;">Lead Pediatrician</span>
-                            <span class="doc-exp" style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-award" style="margin-right: 5px;"></i> 12+ Years Experience</span>
-                        </div>
-                    </div>
-
-                    <!-- Doctor 3 -->
-                    <div class="doctor-card glass-card">
-                        <div class="doc-image-wrapper">
-                            <img src="assets/images/doctor-3.jpg" alt="Dr. Amit Verma" class="doc-image">
-                            <div class="doc-overlay">
-                                <div class="doc-socials">
-                                    <a href="#" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    <a href="#" aria-label="Twitter Profile"><i class="fa-brands fa-twitter"></i></a>
-                                    <a href="#" aria-label="Send Email"><i class="fa-solid fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="doc-info" style="padding: 20px; text-align:center;">
-                            <h3 style="font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 5px;">Dr. Amit Verma</h3>
-                            <span class="doc-spec" style="display:block; color: var(--accent); font-weight:600; font-size:0.9rem; margin-bottom: 8px;">Senior Orthopedic Surgeon</span>
-                            <span class="doc-exp" style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-award" style="margin-right: 5px;"></i> 15+ Years Experience</span>
-                        </div>
-                    </div>
-
-                    <!-- Doctor 4 -->
-                    <div class="doctor-card glass-card">
-                        <div class="doc-image-wrapper">
-                            <img src="assets/images/doctor-4.jpg" alt="Dr. Priya Nair" class="doc-image">
-                            <div class="doc-overlay">
-                                <div class="doc-socials">
-                                    <a href="#" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
-                                    <a href="#" aria-label="Twitter Profile"><i class="fa-brands fa-twitter"></i></a>
-                                    <a href="#" aria-label="Send Email"><i class="fa-solid fa-envelope"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="doc-info" style="padding: 20px; text-align:center;">
-                            <h3 style="font-size: 1.25rem; color: var(--primary-dark); margin-bottom: 5px;">Dr. Priya Nair</h3>
-                            <span class="doc-spec" style="display:block; color: var(--accent); font-weight:600; font-size:0.9rem; margin-bottom: 8px;">Consultant Gynecologist</span>
-                            <span class="doc-exp" style="font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-award" style="margin-right: 5px;"></i> 10+ Years Experience</span>
-                        </div>
-                    </div>
-
                 </div>
+
+                <!-- Doctor 2 -->
+                <div class="doctor-row-card alternate">
+                    <div class="doctor-row-img-wrapper">
+                        <img src="assets/images/doctor-2.jpg" alt="Dr. Sneha Sharma" class="doctor-row-img">
+                    </div>
+                    <div class="doctor-row-info">
+                        <h2 class="doctor-row-name">Dr. Sneha Sharma</h2>
+                        <h4 class="doctor-row-spec">Lead Pediatrician & Neonatologist — MD (Pediatrics)</h4>
+                        <p class="doctor-row-bio">Dr. Sneha Sharma is a highly compassionate specialist in pediatric wellness and neonatal intensive care. Having graduated from top national institutes, she specializes in managing high-risk newborn care, child development, and immunization pathways. With a 12-year clinical journey, her child-friendly approach ensures a gentle experience for young patients.</p>
+                        <div class="doctor-row-actions">
+                            <a href="index.html#appointment" class="btn-view-profile">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 3 -->
+                <div class="doctor-row-card">
+                    <div class="doctor-row-img-wrapper">
+                        <img src="assets/images/doctor-3.jpg" alt="Dr. Amit Verma" class="doctor-row-img">
+                    </div>
+                    <div class="doctor-row-info">
+                        <h2 class="doctor-row-name">Dr. Amit Verma</h2>
+                        <h4 class="doctor-row-spec">Senior Orthopedic Surgeon — MS (Orthopedics)</h4>
+                        <p class="doctor-row-bio">Dr. Amit Verma is a premier specialist in joint replacements, sports injuries, and advanced arthroscopic reconstructions. With over 15 years of surgical leadership, he has pioneered low-incision and rapid-recovery knee and hip replacement methodologies. He is active in orthopedic research and ensures tailored patient rehabilitation plans.</p>
+                        <div class="doctor-row-actions">
+                            <a href="index.html#appointment" class="btn-view-profile">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctor 4 -->
+                <div class="doctor-row-card alternate">
+                    <div class="doctor-row-img-wrapper">
+                        <img src="assets/images/doctor-4.jpg" alt="Dr. Priya Nair" class="doctor-row-img">
+                    </div>
+                    <div class="doctor-row-info">
+                        <h2 class="doctor-row-name">Dr. Priya Nair</h2>
+                        <h4 class="doctor-row-spec">Consultant Gynecologist & Obstetrician — MS (OBGYN)</h4>
+                        <p class="doctor-row-bio">Dr. Priya Nair provides holistic and state-of-the-art care in obstetrics, high-risk pregnancies, and minimally invasive laparoscopic gynecology. Dedicated to women's long-term wellness, she brings a warm, empathetic, and evidence-based clinical practice. Over her 10-year career, she has guided thousands of families safely through parenthood.</p>
+                        <div class="doctor-row-actions">
+                            <a href="index.html#appointment" class="btn-view-profile">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 

@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateFollower();
 
     // Hover micro-interactions for links/buttons/cards
-    const hoverables = document.querySelectorAll("a, button, .service-card, .why-card, .doctor-card, .facility-item, .gallery-item-wrapper, .dot, input, select, textarea");
+    const hoverables = document.querySelectorAll("a, button, .service-card, .why-card, .doctor-card, .doctor-row-card, .facility-item, .gallery-item-wrapper, .dot, input, select, textarea, .partner-logo-item");
     hoverables.forEach(item => {
         item.addEventListener("mouseenter", () => {
             document.body.classList.add("hovered-element");
@@ -316,6 +316,23 @@ document.addEventListener("DOMContentLoaded", () => {
         animateGridItems(".facility-item", "top 95%");
         animateGridItems(".gallery-item-wrapper", "top 90%");
 
+        // Partner Logo Slider reveal
+        const partnerSlider = document.querySelector(".partner-slider-container");
+        if (partnerSlider) {
+            gsap.set(partnerSlider, { y: 30, opacity: 0 });
+            gsap.to(partnerSlider, {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: partnerSlider,
+                    start: "top 90%",
+                    toggleActions: "play none none none"
+                }
+            });
+        }
+
         // 5. Emergency CTA Card entry animation
         const emergencyWrapper = document.querySelector(".emergency-wrapper");
         if (emergencyWrapper) {
@@ -382,6 +399,26 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // 8. Custom Scroll reveals for alternating Doctor Row Cards
+        const doctorRows = document.querySelectorAll(".doctor-row-card");
+        if (doctorRows.length > 0) {
+            doctorRows.forEach((row, idx) => {
+                const isEven = idx % 2 === 1;
+                gsap.set(row, { x: isEven ? 60 : -60, opacity: 0 });
+                gsap.to(row, {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.9,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: row,
+                        start: "top 88%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            });
+        }
+
     } else {
         // Graceful Fail-safe Fallback: Set counter target numbers directly if GSAP is unavailable
         console.warn("Keshavkrupa: GSAP or ScrollTrigger library was not detected. Reverting to high-performance local fallbacks.");
@@ -391,10 +428,263 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ==========================================================================
-       5. TESTIMONIALS MARQUEE SECTION
-       (Purged unused JS slider carousel logic. The new marquee section uses pure,
-       high-performance, hardware-accelerated CSS keyframe animations instead.)
+       5. PREMIUM SPECIALISTS TESTIMONIAL CAROUSEL SECTION
        ========================================================================== */
+    const specialistTestimonialData = [
+        {
+            name: "Dr. Rajesh Patel",
+            desc: "Chief Cardiologist - MD, FACC",
+            category: "Cardiology",
+            quote: "At Keshavkrupa, our cardiology wing combines state-of-the-art diagnostic screening with compassionate critical care. We are committed to achieving positive clinical outcomes and helping patients return to healthy, active lives.",
+            image: "assets/images/doctor-1.jpg",
+            socials: {
+                linkedin: "https://linkedin.com",
+                facebook: "https://facebook.com",
+                twitter: "https://twitter.com",
+                youtube: "https://youtube.com"
+            }
+        },
+        {
+            name: "Dr. Sneha Sharma",
+            desc: "Lead Pediatrician - MD, DCH",
+            category: "Pediatrics",
+            quote: "Caring for children requires gentleness, expertise, and trust. Our pediatric wellness program ensures that every child receives the highest standard of preventive and therapeutic care in a child-friendly environment.",
+            image: "assets/images/doctor-2.jpg",
+            socials: {
+                linkedin: "https://linkedin.com",
+                facebook: "https://facebook.com",
+                youtube: "https://youtube.com",
+                github: "https://github.com"
+            }
+        },
+        {
+            name: "Dr. Amit Verma",
+            desc: "Senior Orthopedic Surgeon - MS (Ortho)",
+            category: "Orthopedics",
+            quote: "From joint replacement surgeries to sports injury rehabilitation, our orthopedic team utilizes advanced surgical techniques to restore mobility and alleviate chronic pain, helping you move freely.",
+            image: "assets/images/doctor-3.jpg",
+            socials: {
+                linkedin: "https://linkedin.com",
+                twitter: "https://twitter.com"
+            }
+        },
+        {
+            name: "Dr. Priya Nair",
+            desc: "Consultant Gynecologist - MD, DGO",
+            category: "Gynecology",
+            quote: "Women's health needs specialized, empathetic care at every stage of life. From comprehensive prenatal programs to complex gynecological treatments, we offer round-the-clock supportive care.",
+            image: "assets/images/doctor-4.jpg",
+            socials: {
+                linkedin: "https://linkedin.com",
+                facebook: "https://facebook.com",
+                youtube: "https://youtube.com"
+            }
+        },
+        {
+            name: "Rajesh Kumar Shah",
+            desc: "Heart Patient - Recovery Success",
+            category: "Patient Review",
+            quote: "The cardiac team at Keshavkrupa Hospital was exceptional. From diagnostics to post-surgery rehabilitation, the doctors and nurses treated me like family. The infrastructure is world-class, and I am back to my healthy life today.",
+            image: "assets/images/patient-1.jpg",
+            socials: {
+                facebook: "https://facebook.com",
+                twitter: "https://twitter.com",
+                linkedin: "https://linkedin.com"
+            }
+        }
+    ];
+
+    let currentSpecialistSlide = 0;
+    let specialistAutoScrollTimer;
+
+    function startSpecialistAutoScroll() {
+        stopSpecialistAutoScroll();
+        specialistAutoScrollTimer = setInterval(() => {
+            // Auto scroll only if document is visible/active to save resources
+            if (!document.hidden) {
+                nextSpecialistSlide();
+            }
+        }, 5000);
+    }
+
+    function stopSpecialistAutoScroll() {
+        if (specialistAutoScrollTimer) {
+            clearInterval(specialistAutoScrollTimer);
+        }
+    }
+
+    const specCarouselImg = document.getElementById("specialistCarouselImage");
+    const specCarouselCard = document.querySelector(".testimonial-carousel-section .testimonial-card-area");
+    const specCarouselCategory = document.getElementById("specialistCarouselCategory");
+    const specCarouselText = document.getElementById("specialistCarouselText");
+    const specCarouselName = document.getElementById("specialistCarouselName");
+    const specCarouselDesc = document.getElementById("specialistCarouselDesc");
+    const specCarouselSocials = document.getElementById("specialistCarouselSocials");
+    const specDotsContainer = document.getElementById("specialistCarouselDots");
+
+    function initSpecialistCarousel() {
+        if (!specCarouselImg) return;
+
+        // Render Dots
+        specDotsContainer.innerHTML = specialistTestimonialData.map((_, idx) => `
+            <button class="carousel-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}" aria-label="Go to testimonial ${idx + 1}" role="tab" aria-selected="${idx === 0 ? 'true' : 'false'}"></button>
+        `).join("");
+
+        // Add Click listeners to Dots
+        const dots = specDotsContainer.querySelectorAll(".carousel-dot");
+        dots.forEach(dot => {
+            dot.addEventListener("click", (e) => {
+                const idx = parseInt(e.target.getAttribute("data-index"), 10);
+                goToSpecialistSlide(idx);
+            });
+            // Custom cursor hover reaction
+            dot.addEventListener("mouseenter", () => document.body.classList.add("hovered-element"));
+            dot.addEventListener("mouseleave", () => document.body.classList.remove("hovered-element"));
+        });
+
+        // Load Initial Slide
+        updateSpecialistSlideContent(0);
+
+        // Wire Navigation Buttons
+        const prevBtn = document.getElementById("specialistCarouselPrevBtn");
+        const nextBtn = document.getElementById("specialistCarouselNextBtn");
+        if (prevBtn) {
+            prevBtn.addEventListener("click", prevSpecialistSlide);
+            prevBtn.addEventListener("mouseenter", () => document.body.classList.add("hovered-element"));
+            prevBtn.addEventListener("mouseleave", () => document.body.classList.remove("hovered-element"));
+        }
+        if (nextBtn) {
+            nextBtn.addEventListener("click", nextSpecialistSlide);
+            nextBtn.addEventListener("mouseenter", () => document.body.classList.add("hovered-element"));
+            nextBtn.addEventListener("mouseleave", () => document.body.classList.remove("hovered-element"));
+        }
+
+        // Keyboard Support
+        document.addEventListener("keydown", (e) => {
+            const doctorsSection = document.getElementById("doctors");
+            if (!doctorsSection) return;
+            
+            let isCarouselInView = false;
+            const rect = doctorsSection.getBoundingClientRect();
+            isCarouselInView = (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight));
+            
+            if (isCarouselInView) {
+                if (e.key === "ArrowLeft") prevSpecialistSlide();
+                if (e.key === "ArrowRight") nextSpecialistSlide();
+            }
+        });
+
+        // Touch Swipe Support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const slideWrapper = document.getElementById("specialistSlide");
+
+        if (slideWrapper) {
+            slideWrapper.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slideWrapper.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    nextSpecialistSlide(); // Swipe Left -> Next
+                } else if (touchEndX - touchStartX > 50) {
+                    prevSpecialistSlide(); // Swipe Right -> Prev
+                }
+            }, { passive: true });
+        }
+
+        // Start Auto Scroll
+        startSpecialistAutoScroll();
+
+        // Pause Auto Scroll on Hover
+        const carouselContainer = document.querySelector(".testimonial-carousel-section .testimonial-carousel-container");
+        if (carouselContainer) {
+            carouselContainer.addEventListener("mouseenter", stopSpecialistAutoScroll);
+            carouselContainer.addEventListener("mouseleave", startSpecialistAutoScroll);
+        }
+    }
+
+    function updateSpecialistSlideContent(index) {
+        const data = specialistTestimonialData[index];
+        if (!data) return;
+        
+        // Image
+        specCarouselImg.src = data.image;
+        specCarouselImg.alt = `Photo of ${data.name}`;
+
+
+
+        // Text Content
+        specCarouselCategory.innerText = data.category;
+        specCarouselText.innerText = `"${data.quote}"`;
+        specCarouselName.innerText = data.name;
+        specCarouselDesc.innerText = data.desc;
+
+        // Social Icons using Lucide names dynamically
+        specCarouselSocials.innerHTML = Object.entries(data.socials).map(([platform, url]) => `
+            <a href="${url}" target="_blank" aria-label="${platform} Link">
+                <i data-lucide="${platform}"></i>
+            </a>
+        `).join("");
+
+        // Recreate Lucide Icons for dynamic content
+        if (typeof lucide !== "undefined") {
+            lucide.createIcons();
+        }
+        
+        // Register cursor reactions
+        const links = specCarouselSocials.querySelectorAll("a");
+        links.forEach(link => {
+            link.addEventListener("mouseenter", () => document.body.classList.add("hovered-element"));
+            link.addEventListener("mouseleave", () => document.body.classList.remove("hovered-element"));
+        });
+    }
+
+    function goToSpecialistSlide(index) {
+        if (index === currentSpecialistSlide) return;
+
+        // Reset auto scroll timer on manual change
+        startSpecialistAutoScroll();
+
+        // Fade Out
+        specCarouselImg.classList.add("fade-out");
+        specCarouselCard.classList.add("fade-out");
+
+        setTimeout(() => {
+            currentSpecialistSlide = index;
+            updateSpecialistSlideContent(index);
+
+            // Update Dots
+            const dots = specDotsContainer.querySelectorAll(".carousel-dot");
+            dots.forEach((dot, idx) => {
+                if (idx === index) {
+                    dot.classList.add("active");
+                    dot.setAttribute("aria-selected", "true");
+                } else {
+                    dot.classList.remove("active");
+                    dot.setAttribute("aria-selected", "false");
+                }
+            });
+
+            // Fade In
+            specCarouselImg.classList.remove("fade-out");
+            specCarouselCard.classList.remove("fade-out");
+        }, 400);
+    }
+
+    function nextSpecialistSlide() {
+        const next = (currentSpecialistSlide + 1) % specialistTestimonialData.length;
+        goToSpecialistSlide(next);
+    }
+
+    function prevSpecialistSlide() {
+        const prev = (currentSpecialistSlide - 1 + specialistTestimonialData.length) % specialistTestimonialData.length;
+        goToSpecialistSlide(prev);
+    }
+
+    // Initialize the carousel immediately
+    initSpecialistCarousel();
 
     /* ==========================================================================
        6. GALLERY LIGHTBOX MODAL
