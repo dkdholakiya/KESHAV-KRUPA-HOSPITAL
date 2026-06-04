@@ -3198,7 +3198,7 @@ body.hovered-element .custom-cursor-follower {
 .back-to-top {
     position: fixed;
     bottom: 90px;
-    /* Above the appointment button */
+    /* Stacking: Above WhatsApp (on desktop) */
     right: 30px;
     width: 50px;
     height: 50px;
@@ -3211,7 +3211,7 @@ body.hovered-element .custom-cursor-follower {
     justify-content: center;
     font-size: 1.15rem;
     cursor: pointer;
-    z-index: 99;
+    z-index: 999;
     opacity: 0;
     visibility: hidden;
     transform: translateY(20px);
@@ -3285,48 +3285,51 @@ body {
 }
 
 /* ==========================================================================
-   GLOBAL APPOINTMENT MODAL & FLOATING BUTTON
+   GLOBAL APPOINTMENT MODAL
    ========================================================================== */
 
-.floating-appointment-btn {
+/* Floating WhatsApp Button */
+.floating-whatsapp-btn {
     position: fixed;
     bottom: 30px;
-    /* Initially at the bottom corner */
+    /* Stacking: Bottom */
     right: 30px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
     color: var(--bg-white);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     border: none;
-    box-shadow: 0 10px 25px rgba(0, 122, 122, 0.4);
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
     cursor: pointer;
-    z-index: 998;
+    z-index: 999;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    animation: pulse-ring 2s infinite;
+    animation: whatsapp-pulse 2s infinite;
+    text-decoration: none;
 }
 
-.floating-appointment-btn:hover {
+.floating-whatsapp-btn:hover {
     transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0, 122, 122, 0.6);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6);
     animation: none;
+    color: var(--bg-white);
 }
 
-@keyframes pulse-ring {
+@keyframes whatsapp-pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(0, 122, 122, 0.7);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
     }
 
     70% {
-        box-shadow: 0 0 0 15px rgba(0, 122, 122, 0);
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
     }
 
     100% {
-        box-shadow: 0 0 0 0 rgba(0, 122, 122, 0);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
     }
 }
 
@@ -3414,17 +3417,17 @@ body {
         padding: 30px 20px;
     }
 
-    .floating-appointment-btn {
+    .floating-whatsapp-btn {
         bottom: 20px;
         right: 20px;
         width: 45px;
         height: 45px;
-        font-size: 1.1rem;
+        font-size: 1.3rem;
     }
 
     .back-to-top {
         right: 20px;
-        bottom: 80px;
+        bottom: 75px;
         width: 45px;
         height: 45px;
     }

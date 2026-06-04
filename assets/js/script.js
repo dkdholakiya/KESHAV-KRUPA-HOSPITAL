@@ -787,7 +787,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Modal Open/Close Logic
     const globalModal = document.getElementById("globalAppointmentModal");
     const closeGlobalModal = document.getElementById("closeGlobalModal");
-    const floatingAppBtn = document.getElementById("floatingAppBtn");
 
     function openAppointmentModal(e) {
         if (e) e.preventDefault();
@@ -800,8 +799,9 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = "";
     }
 
-    floatingAppBtn.addEventListener("click", openAppointmentModal);
-    closeGlobalModal.addEventListener("click", closeAppointmentModal);
+    if (closeGlobalModal) {
+        closeGlobalModal.addEventListener("click", closeAppointmentModal);
+    }
 
     // Close modal on outside click
     globalModal.addEventListener("click", (e) => {
