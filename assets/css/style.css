@@ -4316,11 +4316,14 @@ body.sidebar-open .sidebar-backdrop {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
 .testimonial-carousel-section {
-    --med-blue: var(--primary); /* Hospital primary teal */
-    --med-green: var(--accent); /* Hospital accent gold */
+    --med-blue: var(--primary);
+    /* Hospital primary teal */
+    --med-green: var(--accent);
+    /* Hospital accent gold */
     --med-dark: #1A1A1A;
     --med-muted: #666666;
-    background-color: #F8F9FA; /* Neutral light gray background */
+    background-color: #F8F9FA;
+    /* Neutral light gray background */
     position: relative;
     overflow: hidden;
     font-family: 'Poppins', 'Outfit', sans-serif;
@@ -4348,7 +4351,8 @@ body.sidebar-open .sidebar-backdrop {
     flex-shrink: 0;
     border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 122, 122, 0.08); /* Teal shadow */
+    box-shadow: 0 20px 40px rgba(0, 122, 122, 0.08);
+    /* Teal shadow */
     position: relative;
     z-index: 1;
 }
@@ -4373,9 +4377,12 @@ body.sidebar-open .sidebar-backdrop {
     background: #FFFFFF;
     border-radius: 24px;
     padding: 55px;
-    box-shadow: 0 20px 50px rgba(0, 122, 122, 0.05); /* Teal shadow */
-    border: 1px solid rgba(0, 122, 122, 0.08); /* Teal border */
-    margin-left: -90px; /* Overlap slightly on desktop */
+    box-shadow: 0 20px 50px rgba(0, 122, 122, 0.05);
+    /* Teal shadow */
+    border: 1px solid rgba(0, 122, 122, 0.08);
+    /* Teal border */
+    margin-left: -90px;
+    /* Overlap slightly on desktop */
     position: relative;
     z-index: 2;
     transition: opacity 0.4s ease, transform 0.4s ease;
@@ -4390,7 +4397,8 @@ body.sidebar-open .sidebar-backdrop {
 .testimonial-stars {
     display: flex;
     gap: 4px;
-    color: var(--accent); /* Maintain website gold star style */
+    color: var(--accent);
+    /* Maintain website gold star style */
     margin-bottom: 20px;
 }
 
@@ -4404,7 +4412,8 @@ body.sidebar-open .sidebar-backdrop {
     display: inline-block;
     padding: 6px 14px;
     border-radius: 50px;
-    background-color: rgba(0, 122, 122, 0.08); /* Teal transparent tint */
+    background-color: rgba(0, 122, 122, 0.08);
+    /* Teal transparent tint */
     color: var(--med-blue);
     font-size: 0.8rem;
     font-weight: 700;
@@ -4429,7 +4438,8 @@ body.sidebar-open .sidebar-backdrop {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgba(0, 122, 122, 0.08); /* Teal line */
+    border-top: 1px solid rgba(0, 122, 122, 0.08);
+    /* Teal line */
     padding-top: 25px;
     margin-top: 10px;
 }
@@ -4463,7 +4473,8 @@ body.sidebar-open .sidebar-backdrop {
     border-radius: 50%;
     background-color: #F8F9FA;
     color: var(--med-muted);
-    border: 1px solid rgba(0, 122, 122, 0.05); /* Teal border tint */
+    border: 1px solid rgba(0, 122, 122, 0.05);
+    /* Teal border tint */
     transition: var(--transition-smooth);
 }
 
@@ -4471,7 +4482,8 @@ body.sidebar-open .sidebar-backdrop {
     background-color: var(--med-blue);
     color: #FFFFFF;
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 122, 122, 0.2); /* Teal hover shadow */
+    box-shadow: 0 6px 15px rgba(0, 122, 122, 0.2);
+    /* Teal hover shadow */
 }
 
 .testimonial-socials a i {
@@ -4489,8 +4501,10 @@ body.sidebar-open .sidebar-backdrop {
     border-radius: 50%;
     background-color: #FFFFFF;
     color: var(--med-blue);
-    border: 1px solid rgba(0, 122, 122, 0.1); /* Teal border */
-    box-shadow: 0 8px 25px rgba(0, 122, 122, 0.06); /* Teal shadow */
+    border: 1px solid rgba(0, 122, 122, 0.1);
+    /* Teal border */
+    box-shadow: 0 8px 25px rgba(0, 122, 122, 0.06);
+    /* Teal shadow */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4532,7 +4546,8 @@ body.sidebar-open .sidebar-backdrop {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: rgba(0, 122, 122, 0.15); /* Teal inactive dot */
+    background-color: rgba(0, 122, 122, 0.15);
+    /* Teal inactive dot */
     border: none;
     cursor: pointer;
     transition: var(--transition-smooth);
@@ -4542,7 +4557,8 @@ body.sidebar-open .sidebar-backdrop {
 .carousel-dot.active {
     width: 32px;
     border-radius: 50px;
-    background-color: var(--med-blue); /* Teal active dot */
+    background-color: var(--med-blue);
+    /* Teal active dot */
 }
 
 .carousel-dot:focus {
@@ -4554,10 +4570,12 @@ body.sidebar-open .sidebar-backdrop {
     .testimonial-carousel-container {
         padding: 20px 20px;
     }
+
     .testimonial-image-area {
         width: 380px;
         height: 380px;
     }
+
     .testimonial-card-area {
         padding: 40px;
         margin-left: -50px;
@@ -4566,55 +4584,60 @@ body.sidebar-open .sidebar-backdrop {
 
 @media (max-width: 991px) {
     .testimonial-carousel-container {
-        padding: 20px 20px 80px 20px; /* Extra bottom padding for navigation controls bar */
+        padding: 20px 20px 80px 20px;
+        /* Extra bottom padding for navigation controls bar */
     }
-    
+
     .testimonial-slide-wrapper {
         flex-direction: column;
         align-items: center;
         min-height: unset;
     }
-    
+
     .testimonial-image-area {
         width: 100%;
         max-width: 480px;
         height: 380px;
     }
-    
+
     .testimonial-card-area {
         margin-left: 0;
-        margin-top: -50px; /* Vertically overlap */
+        margin-top: -50px;
+        /* Vertically overlap */
         width: 90%;
-        max-width: 540px; /* Restrict width to maintain optimal layout proportions */
+        max-width: 540px;
+        /* Restrict width to maintain optimal layout proportions */
         padding: 40px 35px;
     }
-    
+
     /* Reposition control buttons on mobile to flank the dots at the bottom */
     .carousel-control-btn {
         top: auto;
-        bottom: 15px; /* Vertical center aligns with dots at bottom: 32px */
+        bottom: 15px;
+        /* Vertical center aligns with dots at bottom: 32px */
         transform: none;
         width: 44px;
         height: 44px;
     }
-    
+
     .carousel-control-btn:hover {
-        transform: scale(1.05); /* Avoid translate transform on mobile */
+        transform: scale(1.05);
+        /* Avoid translate transform on mobile */
     }
-    
+
     .carousel-control-btn i {
         width: 18px;
         height: 18px;
     }
-    
+
     .control-prev {
         left: calc(50% - 90px);
     }
-    
+
     .control-next {
         right: calc(50% - 90px);
     }
-    
+
     .carousel-dots-container {
         margin-top: 30px;
         position: absolute;
@@ -4629,7 +4652,7 @@ body.sidebar-open .sidebar-backdrop {
         height: 280px;
         border-radius: 20px;
     }
-    
+
     .testimonial-card-area {
         width: 95%;
         max-width: 420px;
@@ -4638,23 +4661,25 @@ body.sidebar-open .sidebar-backdrop {
         border-radius: 20px;
         text-align: center;
     }
-    
+
     .testimonial-quote-text {
-        font-size: 1.0rem; /* Optimize quote text size on mobile */
+        font-size: 1.0rem;
+        /* Optimize quote text size on mobile */
         line-height: 1.6;
         margin-bottom: 20px;
     }
-    
+
     .testimonial-author-name {
-        font-size: 1.15rem; /* Optimize author name size on mobile */
+        font-size: 1.15rem;
+        /* Optimize author name size on mobile */
     }
-    
+
     .testimonial-profile-info {
         flex-direction: column;
         gap: 15px;
         text-align: center;
     }
-    
+
     .testimonial-socials {
         justify-content: center;
     }

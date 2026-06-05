@@ -563,11 +563,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.addEventListener("keydown", (e) => {
             const doctorsSection = document.getElementById("doctors");
             if (!doctorsSection) return;
-            
+
             let isCarouselInView = false;
             const rect = doctorsSection.getBoundingClientRect();
             isCarouselInView = (rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight));
-            
+
             if (isCarouselInView) {
                 if (e.key === "ArrowLeft") prevSpecialistSlide();
                 if (e.key === "ArrowRight") nextSpecialistSlide();
@@ -608,7 +608,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateSpecialistSlideContent(index) {
         const data = specialistTestimonialData[index];
         if (!data) return;
-        
+
         // Image
         specCarouselImg.src = data.image;
         specCarouselImg.alt = `Photo of ${data.name}`;
@@ -621,18 +621,19 @@ document.addEventListener("DOMContentLoaded", () => {
         specCarouselName.innerText = data.name;
         specCarouselDesc.innerText = data.desc;
 
-        // Social Icons using Lucide names dynamically
-        specCarouselSocials.innerHTML = Object.entries(data.socials).map(([platform, url]) => `
-            <a href="${url}" target="_blank" aria-label="${platform} Link">
-                <i data-lucide="${platform}"></i>
-            </a>
-        `).join("");
+        // Social Icons using Font Awesome brands dynamically
+        specCarouselSocials.innerHTML = Object.entries(data.socials).map(([platform, url]) => {
+            let iconClass = `fa-brands fa-${platform}`;
+            if (platform === 'linkedin') iconClass = 'fa-brands fa-linkedin-in';
+            if (platform === 'twitter') iconClass = 'fa-brands fa-x-twitter';
+            if (platform === 'facebook') iconClass = 'fa-brands fa-facebook-f';
+            return `
+                <a href="${url}" target="_blank" aria-label="${platform} Link">
+                    <i class="${iconClass}"></i>
+                </a>
+            `;
+        }).join("");
 
-        // Recreate Lucide Icons for dynamic content
-        if (typeof lucide !== "undefined") {
-            lucide.createIcons();
-        }
-        
         // Register cursor reactions
         const links = specCarouselSocials.querySelectorAll("a");
         links.forEach(link => {
