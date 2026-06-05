@@ -124,10 +124,10 @@
     <main class="subpage-main">
         
         <!-- Breadcrumb / Header banner -->
-        <section class="page-banner" style="background: linear-gradient(135deg, var(--primary-light) 0%, rgba(229,242,242,0.4) 100%); padding: 80px 0; text-align: center;">
+        <section class="page-banner">
             <div class="container">
-                <span class="section-subtitle" style="letter-spacing: 3px; font-weight:700;">OUR INFRASTRUCTURE</span>
-                <h1 class="section-title" style="font-size: 3rem; margin-top: 10px;">Our Luxury Infrastructure</h1>
+                <span class="section-subtitle">OUR INFRASTRUCTURE</span>
+                <h1 class="section-title">Our Luxury Infrastructure</h1>
                 <div class="section-divider"></div>
             </div>
         </section>
@@ -135,10 +135,19 @@
         <!-- Gallery Grid Section -->
         <section class="gallery-detail section-padding">
             <div class="container">
-                <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                <!-- Category Filter Navigation -->
+                <div class="gallery-filter-container anim-fade">
+                    <button class="filter-btn active" data-filter="all">All Facilities</button>
+                    <button class="filter-btn" data-filter="diagnostics">Diagnostics</button>
+                    <button class="filter-btn" data-filter="rooms">Rooms & Wards</button>
+                    <button class="filter-btn" data-filter="critical-care">Critical Care</button>
+                    <button class="filter-btn" data-filter="lobby">Lobby & Reception</button>
+                </div>
+
+                <div class="gallery-grid">
                     
                     <!-- Item 1 -->
-                    <div class="gallery-item-wrapper" data-index="0">
+                    <div class="gallery-item-wrapper" data-index="0" data-category="diagnostics">
                         <img src="assets/images/gallery-1.jpg" alt="Clinical Laboratory Diagnostics" class="gallery-img">
                         <div class="gallery-overlay">
                             <div class="gallery-info">
@@ -150,7 +159,7 @@
                     </div>
 
                     <!-- Item 2 -->
-                    <div class="gallery-item-wrapper" data-index="1">
+                    <div class="gallery-item-wrapper" data-index="1" data-category="rooms">
                         <img src="assets/images/gallery-2.jpg" alt="Luxury General Ward Room" class="gallery-img">
                         <div class="gallery-overlay">
                             <div class="gallery-info">
@@ -162,7 +171,7 @@
                     </div>
 
                     <!-- Item 3 -->
-                    <div class="gallery-item-wrapper" data-index="2">
+                    <div class="gallery-item-wrapper" data-index="2" data-category="critical-care">
                         <img src="assets/images/gallery-3.jpg" alt="Critical ICU Cardiac Monitoring Setup" class="gallery-img">
                         <div class="gallery-overlay">
                             <div class="gallery-info">
@@ -174,7 +183,7 @@
                     </div>
 
                     <!-- Item 4 -->
-                    <div class="gallery-item-wrapper" data-index="3">
+                    <div class="gallery-item-wrapper" data-index="3" data-category="rooms">
                         <img src="assets/images/gallery-4.jpg" alt="Specialist Doctor Consultation Room" class="gallery-img">
                         <div class="gallery-overlay">
                             <div class="gallery-info">
@@ -186,7 +195,7 @@
                     </div>
 
                     <!-- Item 5 -->
-                    <div class="gallery-item-wrapper" data-index="4">
+                    <div class="gallery-item-wrapper" data-index="4" data-category="lobby">
                         <img src="assets/images/about-lobby.jpg" alt="Spacious Hospital Reception Area" class="gallery-img">
                         <div class="gallery-overlay">
                             <div class="gallery-info">
@@ -198,7 +207,7 @@
                     </div>
 
                     <!-- Item 6 -->
-                    <div class="gallery-item-wrapper" data-index="5">
+                    <div class="gallery-item-wrapper" data-index="5" data-category="diagnostics">
                         <img src="assets/images/gallery-2.jpg" alt="MRI Scanners & Diagnostics" class="gallery-img">
                         <div class="gallery-overlay">
                             <div class="gallery-info">
@@ -319,6 +328,52 @@
 
     <!-- Custom Javascript -->
     <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const galleryItems = document.querySelectorAll(".gallery-item-wrapper");
+            const galleryGrid = document.querySelector(".gallery-grid");
+
+            // Register custom cursor hover reactions for filter buttons
+            filterBtns.forEach(btn => {
+                btn.addEventListener("mouseenter", () => {
+                    document.body.classList.add("hovered-element");
+                });
+                btn.addEventListener("mouseleave", () => {
+                    document.body.classList.remove("hovered-element");
+                });
+
+                // Filter Click Event
+                btn.addEventListener("click", () => {
+                    // Remove active class from all buttons and add to clicked
+                    filterBtns.forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+
+                    const filterValue = btn.getAttribute("data-filter");
+
+                    // Fade out grid before layout changes
+                    galleryGrid.style.opacity = "0.3";
+
+                    setTimeout(() => {
+                        galleryItems.forEach(item => {
+                            const category = item.getAttribute("data-category");
+                            if (filterValue === "all" || category === filterValue) {
+                                item.classList.remove("hidden");
+                                void item.offsetWidth;
+                                item.style.opacity = "1";
+                            } else {
+                                item.classList.add("hidden");
+                                item.style.opacity = "0";
+                            }
+                        });
+
+                        // Fade back in
+                        galleryGrid.style.opacity = "1";
+                    }, 300);
+                });
+            });
+        });
+    </script>
 <!-- GLOBAL APPOINTMENT MODAL & FLOATING BUTTON -->
 <!-- FLOATING WHATSAPP BUTTON -->
 <a href="https://wa.me/919313751534" class="floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">

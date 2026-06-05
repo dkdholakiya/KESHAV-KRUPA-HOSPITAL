@@ -744,9 +744,24 @@ document.addEventListener("DOMContentLoaded", () => {
         lightboxClose.addEventListener("click", closeLightbox);
     }
 
+    function getNextVisibleIndex(currentIndex, direction) {
+        const total = galleryImagesArray.length;
+        if (total === 0) return 0;
+        let nextIndex = currentIndex;
+        
+        for (let i = 0; i < total; i++) {
+            nextIndex = (nextIndex + direction + total) % total;
+            const itemElement = galleryItems[nextIndex];
+            if (!itemElement || (!itemElement.classList.contains('hidden') && itemElement.style.display !== 'none')) {
+                return nextIndex;
+            }
+        }
+        return currentIndex;
+    }
+
     if (lightboxNext) {
         lightboxNext.addEventListener("click", () => {
-            activeImageIndex = (activeImageIndex + 1) % galleryImagesArray.length;
+            activeImageIndex = getNextVisibleIndex(activeImageIndex, 1);
             updateLightboxContent();
             gsap.fromTo(lightboxImg, { opacity: 0.8 }, { opacity: 1, duration: 0.3 });
         });
@@ -754,7 +769,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (lightboxPrev) {
         lightboxPrev.addEventListener("click", () => {
-            activeImageIndex = (activeImageIndex - 1 + galleryImagesArray.length) % galleryImagesArray.length;
+            activeImageIndex = getNextVisibleIndex(activeImageIndex, -1);
             updateLightboxContent();
             gsap.fromTo(lightboxImg, { opacity: 0.8 }, { opacity: 1, duration: 0.3 });
         });
