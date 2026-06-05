@@ -40,7 +40,7 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100%;
 }
 
@@ -49,7 +49,7 @@ body {
     background-color: var(--bg-light);
     color: var(--text-dark);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
 
 }
 
@@ -3253,7 +3253,7 @@ body.hovered-element .custom-cursor-follower {
 html,
 body {
     max-width: 100% !important;
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     position: relative;
 }
 
@@ -4094,6 +4094,7 @@ body.sidebar-open .sidebar-backdrop {
     line-height: 1.65;
     color: var(--text-muted);
     margin: 6px 0 12px 0;
+    text-align: justify;
 }
 
 .doctor-row-actions {
@@ -4682,5 +4683,451 @@ body.sidebar-open .sidebar-backdrop {
 
     .testimonial-socials {
         justify-content: center;
+    }
+}
+
+/* ==========================================================================
+   DOCTOR PROFILE PAGE STYLING (PREMIUM GLASSMORPHISM & TIMELINE)
+   ========================================================================== */
+
+.doctor-profile-details {
+    padding-top: 60px;
+    padding-bottom: 80px;
+    background-color: var(--bg-light);
+}
+
+.profile-detail-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.profile-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 110px;
+    align-self: start;
+    /* Bulletproof sticky layout */
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    z-index: 10;
+}
+
+/* Glassmorphism Info Card */
+.profile-info-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.profile-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 45px rgba(0, 122, 122, 0.08);
+}
+
+.profile-img-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--primary-light);
+}
+
+.profile-detail-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-info-card:hover .profile-detail-img {
+    transform: scale(1.04);
+}
+
+.gold-badge-floating {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--accent);
+    color: var(--text-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(229, 182, 62, 0.3);
+    z-index: 2;
+}
+
+.profile-meta-content {
+    padding: 25px;
+}
+
+.profile-meta-name {
+    font-family: 'Outfit', sans-serif;
+    color: var(--primary-dark);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.profile-meta-spec {
+    color: var(--accent);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.profile-meta-subspec {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.profile-contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-top: 1px solid rgba(0, 122, 122, 0.08);
+    padding-top: 20px;
+}
+
+.profile-contact-list .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    transition: var(--transition-quick);
+}
+
+.profile-contact-list .contact-item i {
+    color: var(--primary);
+    font-size: 1.05rem;
+    width: 20px;
+    text-align: center;
+}
+
+.profile-contact-list .contact-item span {
+    word-break: break-all;
+    font-weight: 500;
+}
+
+.profile-contact-list .contact-item:hover {
+    color: var(--primary);
+}
+
+/* Consultation Timings Block */
+.timings-block-right {
+    transition: var(--transition-smooth);
+}
+
+.timings-flex-container {
+    display: flex;
+    gap: 40px;
+    align-items: stretch;
+}
+
+.timings-table-wrapper {
+    flex: 1.2;
+}
+
+.timings-cta-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    border-left: 1px solid rgba(0, 122, 122, 0.08);
+    padding-left: 40px;
+}
+
+.cta-message-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+}
+
+.cta-message-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.availability-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.availability-table tr {
+    border-bottom: 1px solid rgba(0, 122, 122, 0.06);
+    transition: var(--transition-quick);
+}
+
+.availability-table tr:last-child {
+    border-bottom: none;
+}
+
+.availability-table tr:hover {
+    background-color: rgba(0, 122, 122, 0.02);
+}
+
+.availability-table td {
+    padding: 12px 0;
+    font-size: 0.9rem;
+}
+
+.availability-table .day-cell {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.availability-table .hours-cell {
+    text-align: right;
+    color: var(--text-muted);
+}
+
+.cta-appointment-btn {
+    border-radius: var(--border-radius-sm);
+    justify-content: center;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-smooth);
+}
+
+@media (max-width: 768px) {
+    .timings-flex-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .timings-cta-wrapper {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(0, 122, 122, 0.08);
+        padding-top: 25px;
+    }
+}
+
+/* Main Profile Content Panel */
+.profile-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profile-content-block {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 15px 35px var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--border-radius-md);
+    padding: 35px 40px;
+    transition: var(--transition-smooth);
+}
+
+.profile-content-block:hover {
+    box-shadow: 0 20px 45px rgba(0, 122, 122, 0.08);
+}
+
+.block-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.block-title i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.block-divider {
+    height: 3px;
+    width: 60px;
+    background: linear-gradient(90deg, var(--primary) 0%, rgba(0, 122, 122, 0.1) 100%);
+    margin: 15px 0 25px 0;
+    border-radius: 5px;
+}
+
+.block-text {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* Specialization Badges */
+.spec-badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.spec-badge {
+    background: rgba(0, 122, 122, 0.03);
+    border: 1px solid rgba(0, 122, 122, 0.12);
+    color: var(--primary-dark);
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spec-badge i {
+    color: var(--primary);
+    font-size: 0.85rem;
+}
+
+.spec-badge:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--bg-white);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 122, 122, 0.15);
+}
+
+.spec-badge:hover i {
+    color: var(--accent);
+}
+
+/* Education Timeline */
+.timeline-wrapper {
+    position: relative;
+    padding-left: 35px;
+    margin-top: 10px;
+}
+
+.timeline-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    width: 2px;
+    height: calc(100% - 15px);
+    background: linear-gradient(to bottom, var(--primary) 0%, rgba(0, 122, 122, 0.08) 100%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -30px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-white);
+    border: 3px solid var(--primary);
+    box-shadow: 0 0 0 4px var(--bg-light);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 2;
+}
+
+.timeline-item:hover .timeline-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.2);
+}
+
+.timeline-date {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.timeline-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Career Highlights List */
+.achievements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.achievements-list li {
+    position: relative;
+    padding-left: 30px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    display: flex;
+    align-items: flex-start;
+}
+
+.achievements-list li i.bullet-icon {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: var(--accent);
+    font-size: 0.85rem;
+    transition: var(--transition-quick);
+}
+
+.achievements-list li:hover i.bullet-icon {
+    transform: rotate(45deg) scale(1.1);
+    color: var(--primary);
+}
+
+/* Responsive Custom Adjustments */
+@media (max-width: 992px) {
+    .profile-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .profile-sidebar {
+        position: relative;
+        top: 0;
+    }
+
+    .profile-detail-img {
+        height: 360px;
+    }
+
+    .profile-content-block {
+        padding: 30px 25px;
     }
 }
