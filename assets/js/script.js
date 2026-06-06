@@ -105,24 +105,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Shrink and blur navbar on scroll
     window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
         }
 
         updateScrollProgressBar();
     });
 
     // Hamburger drawer controls
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
-        mobileNav.classList.toggle('open');
-        document.body.classList.toggle('overflow-hidden');
-    });
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileNav.classList.toggle('open');
+            document.body.classList.toggle('overflow-hidden');
+        });
+    }
 
     const mobileCloseIcon = document.querySelector('.mobile-close-icon');
-    if (mobileCloseIcon) {
+    if (mobileCloseIcon && hamburger && mobileNav) {
         mobileCloseIcon.addEventListener('click', () => {
             hamburger.classList.remove('open');
             mobileNav.classList.remove('open');
@@ -132,15 +136,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     mobileLinks.forEach(link => {
         link.addEventListener("click", () => {
-            hamburger.classList.remove("open");
-            mobileNav.classList.remove("open");
+            if (hamburger) hamburger.classList.remove("open");
+            if (mobileNav) mobileNav.classList.remove("open");
             document.body.classList.remove("overflow-hidden");
         });
     });
 
     // Backdrop overlay click handler
     const backdrop = document.querySelector('.sidebar-backdrop');
-    if (backdrop) {
+    if (backdrop && hamburger && mobileNav) {
         backdrop.addEventListener('click', () => {
             hamburger.classList.remove('open');
             mobileNav.classList.remove('open');
@@ -149,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // Close sidebar when clicking outside of it
     document.addEventListener('click', (e) => {
+        if (!mobileNav || !hamburger) return;
         const isClickInsideNav = mobileNav.contains(e.target);
         const isClickOnHamburger = hamburger.contains(e.target);
 
@@ -177,10 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Show/Hide back to top button
-        if (scrollTop > 400) {
-            backToTopBtn.classList.add("visible");
-        } else {
-            backToTopBtn.classList.remove("visible");
+        if (backToTopBtn) {
+            if (scrollTop > 400) {
+                backToTopBtn.classList.add("visible");
+            } else {
+                backToTopBtn.classList.remove("visible");
+            }
         }
 
         // Update back to top radial progress ring outline
@@ -806,13 +813,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function openAppointmentModal(e) {
         if (e) e.preventDefault();
-        globalModal.classList.add("open");
-        document.body.style.overflow = "hidden";
+        if (globalModal) {
+            globalModal.classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
     }
 
     function closeAppointmentModal() {
-        globalModal.classList.remove("open");
-        document.body.style.overflow = "";
+        if (globalModal) {
+            globalModal.classList.remove("open");
+            document.body.style.overflow = "";
+        }
     }
 
     if (closeGlobalModal) {
@@ -820,9 +831,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Close modal on outside click
-    globalModal.addEventListener("click", (e) => {
-        if (e.target === globalModal) closeAppointmentModal();
-    });
+    if (globalModal) {
+        globalModal.addEventListener("click", (e) => {
+            if (e.target === globalModal) closeAppointmentModal();
+        });
+    }
 
     // Intercept all "Book Appointment" links
     document.querySelectorAll('a[href*="#appointment"]').forEach(link => {
@@ -854,88 +867,101 @@ document.addEventListener("DOMContentLoaded", () => {
     // Highlight input helper on validation status
     function setValidity(inputElement, isValid) {
         const group = inputElement.closest(".form-group");
-        if (isValid) {
-            group.classList.remove("invalid");
-        } else {
-            group.classList.add("invalid");
-        }
-    }
-
-    // Real-time validation triggers on blur
-    const inputsToValidate = appForm.querySelectorAll("input[required], select[required]");
-    inputsToValidate.forEach(input => {
-        input.addEventListener("blur", () => {
-            validateSingleField(input);
-        });
-
-        input.addEventListener("input", () => {
-            const group = input.closest(".form-group");
-            if (group.classList.contains("invalid")) {
-                validateSingleField(input);
-            }
-        });
-    });
-
-    function validateSingleField(field) {
-        let isValid = true;
-        const val = field.value.trim();
-
-        if (field.id === "name") {
-            isValid = val.length >= 2;
-        } else if (field.id === "phone") {
-            isValid = validatePhone(val);
-        } else if (field.id === "email") {
-            isValid = validateEmail(val);
-        } else if (field.id === "department") {
-            isValid = val !== "";
-        } else if (field.id === "date") {
-            isValid = val !== "";
+        if (group) {
             if (isValid) {
-                const selectedDate = new Date(val);
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
-                isValid = selectedDate >= today;
+                group.classList.remove("invalid");
+            } else {
+                group.classList.add("invalid");
             }
         }
-
-        setValidity(field, isValid);
-        return isValid;
     }
 
-    // Intercept form submission
-    appForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        let isFormValid = true;
+    if (appForm) {
+        // Real-time validation triggers on blur
+        const inputsToValidate = appForm.querySelectorAll("input[required], select[required]");
         inputsToValidate.forEach(input => {
-            const isFieldValid = validateSingleField(input);
-            if (!isFieldValid) {
-                isFormValid = false;
-            }
-        });
+            input.addEventListener("blur", () => {
+                validateSingleField(input);
+            });
 
-        if (isFormValid) {
-            // Retrieve values for dynamic modal content
-            const phoneVal = document.getElementById("phone").value;
-            document.getElementById("userPhone").innerText = phoneVal;
-
-            // Open beautiful preloaded success card modal using GSAP
-            successOverlay.classList.add("open");
-            gsap.fromTo(".success-box", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" });
-        }
-    });
-
-    // Close success overlay modal
-    if (closeSuccessBtn) {
-        closeSuccessBtn.addEventListener("click", () => {
-            successOverlay.classList.remove("open");
-            appForm.reset();
-
-            // Force reset validity styling status classes
-            inputsToValidate.forEach(input => {
-                input.closest(".form-group").classList.remove("invalid");
+            input.addEventListener("input", () => {
+                const group = input.closest(".form-group");
+                if (group && group.classList.contains("invalid")) {
+                    validateSingleField(input);
+                }
             });
         });
+
+        function validateSingleField(field) {
+            let isValid = true;
+            const val = field.value.trim();
+
+            if (field.id === "name") {
+                isValid = val.length >= 2;
+            } else if (field.id === "phone") {
+                isValid = validatePhone(val);
+            } else if (field.id === "email") {
+                isValid = validateEmail(val);
+            } else if (field.id === "department") {
+                isValid = val !== "";
+            } else if (field.id === "date") {
+                isValid = val !== "";
+                if (isValid) {
+                    const selectedDate = new Date(val);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    isValid = selectedDate >= today;
+                }
+            }
+
+            setValidity(field, isValid);
+            return isValid;
+        }
+
+        // Intercept form submission
+        appForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let isFormValid = true;
+            inputsToValidate.forEach(input => {
+                const isFieldValid = validateSingleField(input);
+                if (!isFieldValid) {
+                    isFormValid = false;
+                }
+            });
+
+            if (isFormValid) {
+                // Retrieve values for dynamic modal content
+                const phoneInput = document.getElementById("phone");
+                const phoneVal = phoneInput ? phoneInput.value : "";
+                const userPhoneEl = document.getElementById("userPhone");
+                if (userPhoneEl) {
+                    userPhoneEl.innerText = phoneVal;
+                }
+
+                // Open beautiful preloaded success card modal using GSAP
+                if (successOverlay) {
+                    successOverlay.classList.add("open");
+                    if (isGsapAvailable) {
+                        gsap.fromTo(".success-box", { scale: 0.7, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.7)" });
+                    }
+                }
+            }
+        });
+
+        // Close success overlay modal
+        if (closeSuccessBtn && successOverlay) {
+            closeSuccessBtn.addEventListener("click", () => {
+                successOverlay.classList.remove("open");
+                appForm.reset();
+
+                // Force reset validity styling status classes
+                inputsToValidate.forEach(input => {
+                    const group = input.closest(".form-group");
+                    if (group) group.classList.remove("invalid");
+                });
+            });
+        }
     }
 
     /* ==========================================================================

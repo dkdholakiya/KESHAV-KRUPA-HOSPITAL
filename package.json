@@ -1,8 +1,8 @@
 {
-  "name": "keshavkrupa-hospital-website",
+  "name": "keshavkrupa-hospital",
+  "private": true,
   "version": "1.0.0",
-  "description": "Premium, modern, fully responsive hospital website for Keshavkrupa Hospital using HTML5, CSS3, JS, and GSAP.",
-  "main": "index.html",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,5 +10,9 @@
   },
   "devDependencies": {
     "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38"
   }
 }
