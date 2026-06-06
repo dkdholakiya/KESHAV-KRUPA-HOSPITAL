@@ -176,30 +176,25 @@
             background: var(--bg-white);
             display: flex;
             flex-direction: column;
-            justify-content: center;
             padding: 80px 10%;
             position: relative;
             box-shadow: -10px 0 30px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
         }
 
-        .back-to-home-link {
-            position: absolute;
-            top: 40px;
-            left: 10%;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: var(--transition-quick);
+        .portal-form-container {
+            width: 100%;
+            max-width: 480px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            position: relative;
         }
 
-        .back-to-home-link:hover {
-            color: var(--primary);
-            transform: translateX(-4px);
+        .portal-logo-right {
+            margin: 0 auto 30px auto;
         }
+
 
         .form-header {
             margin-bottom: 40px;
@@ -415,11 +410,108 @@
             }
 
             .portal-form-panel {
-                padding: 60px 8%;
+                padding: 40px 8% 30px 8%;
+                overflow-y: auto;
+                -ms-overflow-style: none;
+                /* IE and Edge */
+                scrollbar-width: none;
+                /* Firefox */
             }
 
-            .back-to-home-link {
-                left: 8%;
+            .portal-form-panel::-webkit-scrollbar {
+                display: none;
+                /* Chrome, Safari and Opera */
+            }
+
+            .portal-form-container {
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 576px),
+        (max-height: 720px) {
+            .portal-form-panel {
+                padding: 20px 5% 15px 5%;
+            }
+
+            .portal-form-container {
+                margin: auto;
+            }
+
+            .portal-logo-right {
+                margin: 0 auto 12px auto;
+            }
+
+            .portal-logo-right img {
+                width: 38px !important;
+                height: 38px !important;
+            }
+
+            .portal-logo-right span:first-of-type {
+                font-size: 1.3rem !important;
+            }
+
+            .portal-logo-right span:last-of-type {
+                font-size: 0.65rem !important;
+                letter-spacing: 2px !important;
+            }
+
+            .form-header {
+                margin-bottom: 12px;
+            }
+
+            .form-header h2 {
+                font-size: 1.5rem;
+                margin-bottom: 5px;
+            }
+
+            .form-header p {
+                font-size: 0.85rem;
+            }
+
+            .portal-login-form .form-group {
+                margin-bottom: 12px;
+            }
+
+            .portal-login-form .form-control {
+                padding: 10px 14px;
+                font-size: 0.9rem;
+            }
+
+            .portal-login-form .floating-label {
+                left: 14px;
+                font-size: 0.9rem;
+            }
+
+            .portal-login-form .form-control:focus~.floating-label,
+            .portal-login-form .form-control:not(:placeholder-shown)~.floating-label {
+                font-size: 0.7rem;
+            }
+
+            .form-options-row {
+                margin-bottom: 15px;
+                font-size: 0.8rem;
+            }
+
+            .submit-btn {
+                padding: 10px;
+                font-size: 0.95rem;
+            }
+
+            .social-divider {
+                margin: 12px 0;
+            }
+
+            .social-login-btn {
+                padding: 9px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .social-login-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
         }
     </style>
@@ -460,72 +552,77 @@
 
         <!-- Right Panel -->
         <div class="portal-form-panel">
-            <a href="index.html" class="back-to-home-link">
-                <i class="fa-solid fa-arrow-left"></i> Back to Homepage
-            </a>
 
-            <!-- Logo centered here on the right side -->
-            <div class="portal-logo-right" style="margin: 0 auto 30px auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; z-index: 10; width: fit-content; text-align: center;">
-                <img src="assets/images/logo-icon.svg" alt="Keshavkrupa Hospital Logo" style="width: 52px; height: 52px; filter: drop-shadow(0 4px 8px rgba(0,122,122,0.12));">
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <span style="font-size: 1.6rem; font-weight: 700; color: var(--primary-dark); font-family: 'Outfit', sans-serif; line-height: 1.2; letter-spacing: 0.5px;">Keshavkrupa</span>
-                    <span style="font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 2.5px; margin-top: 3px;">Care You Can Trust</span>
+
+            <div class="portal-form-container">
+                <!-- Logo centered here on the right side -->
+                <a href="index.html" class="portal-logo-right"
+                    style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 15px; z-index: 10; width: fit-content; text-align: left; text-decoration: none;">
+                    <img src="assets/images/logo-icon.svg" alt="Keshavkrupa Hospital Logo"
+                        style="width: 52px; height: 52px; filter: drop-shadow(0 4px 8px rgba(0,122,122,0.12));">
+                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                        <span
+                            style="font-size: 1.6rem; font-weight: 700; color: var(--primary-dark); font-family: 'Outfit', sans-serif; line-height: 1.2; letter-spacing: 0.5px;">Keshavkrupa</span>
+                        <span
+                            style="font-size: 0.75rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 2.5px; margin-top: 3px;">Care
+                            You Can Trust</span>
+                    </div>
+                </a>
+
+                <div class="form-header" style="text-align: center;">
+                    <h2>Welcome Back</h2>
+                    <p>Don't have an account or portal credentials? <a href="contact.html">Contact admin</a></p>
                 </div>
+
+                <form id="portalLoginForm" class="portal-login-form" autocomplete="on">
+                    <!-- Email/ID Field -->
+                    <div class="form-group">
+                        <input type="text" id="email" name="email" required placeholder=" " class="form-control"
+                            autocomplete="username">
+                        <label for="email" class="floating-label">User ID, Email, or Employee ID</label>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="form-group">
+                        <input type="password" id="password" name="password" required placeholder=" "
+                            class="form-control" autocomplete="current-password">
+                        <label for="password" class="floating-label">Password</label>
+                        <button type="button" class="password-toggle-btn" aria-label="Toggle Password Visibility">
+                            <i class="fa-regular fa-eye-slash"></i>
+                        </button>
+                    </div>
+
+                    <!-- Options Row -->
+                    <div class="form-options-row">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="rememberMe" id="rememberMe">
+                            <span>Remember me</span>
+                        </label>
+                        <a href="#" class="forgot-password-link">Forgot password?</a>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">
+                        <span>Secure Login</span>
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </button>
+
+                    <div class="social-divider">
+                        <span>Or login with partner ID</span>
+                    </div>
+
+                    <div class="social-login-grid">
+                        <button type="button" class="social-login-btn">
+                            <img src="https://www.google.com/favicon.ico" alt="Google Logo" width="16" height="16">
+                            <span>Google Health</span>
+                        </button>
+                        <button type="button" class="social-login-btn">
+                            <i class="fa-brands fa-github" style="font-size: 1.1rem;"></i>
+                            <span>Github Key</span>
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-header" style="text-align: center;">
-                <h2>Welcome Back</h2>
-                <p>Don't have an account or portal credentials? <a href="contact.html">Contact admin</a></p>
-            </div>
-
-            <form id="portalLoginForm" class="portal-login-form" autocomplete="on">
-                <!-- Email/ID Field -->
-                <div class="form-group">
-                    <input type="text" id="email" name="email" required placeholder=" " class="form-control"
-                        autocomplete="username">
-                    <label for="email" class="floating-label">User ID, Email, or Employee ID</label>
-                </div>
-
-                <!-- Password Field -->
-                <div class="form-group">
-                    <input type="password" id="password" name="password" required placeholder=" " class="form-control"
-                        autocomplete="current-password">
-                    <label for="password" class="floating-label">Password</label>
-                    <button type="button" class="password-toggle-btn" aria-label="Toggle Password Visibility">
-                        <i class="fa-regular fa-eye-slash"></i>
-                    </button>
-                </div>
-
-                <!-- Options Row -->
-                <div class="form-options-row">
-                    <label class="checkbox-container">
-                        <input type="checkbox" name="rememberMe" id="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password-link">Forgot password?</a>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="submit-btn">
-                    <span>Secure Login</span>
-                    <i class="fa-solid fa-shield-halved"></i>
-                </button>
-
-                <div class="social-divider">
-                    <span>Or login with partner ID</span>
-                </div>
-
-                <div class="social-login-grid">
-                    <button type="button" class="social-login-btn">
-                        <img src="https://www.google.com/favicon.ico" alt="Google Logo" width="16" height="16">
-                        <span>Google Health</span>
-                    </button>
-                    <button type="button" class="social-login-btn">
-                        <i class="fa-brands fa-github" style="font-size: 1.1rem;"></i>
-                        <span>Github Key</span>
-                    </button>
-                </div>
-            </form>
         </div>
     </div>
 
