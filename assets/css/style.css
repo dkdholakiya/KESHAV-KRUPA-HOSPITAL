@@ -5576,3 +5576,293 @@ body.sidebar-open .sidebar-backdrop {
         letter-spacing: 2px;
     }
 }
+
+/* ==========================================================================
+   PATIENT VIDEO TESTIMONIALS & CLINICAL MEDIA SECTION
+   ========================================================================== */
+.video-testimonials-section {
+    background-color: var(--bg-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.video-testimonials-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    gap: 24px;
+    margin-bottom: 50px;
+    padding: 10px 0;
+}
+
+.video-testimonials-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.patient-video-card {
+    flex: 0 0 calc(20% - 20px);
+    scroll-snap-align: start;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/16;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    background: linear-gradient(180deg, #0A5F5F 0%, #002B2B 100%);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.patient-video-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 43, 43, 0.4) 100%);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.patient-video-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 122, 122, 0.15);
+}
+
+.patient-cutout-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+    filter: brightness(0.9);
+}
+
+.patient-video-card:hover .patient-cutout-img {
+    transform: scale(1.08);
+    filter: brightness(0.95);
+}
+
+.video-card-bottom-sheet {
+    position: relative;
+    width: 100%;
+    background: #ffffff;
+    padding: 16px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.03);
+    z-index: 5;
+    transition: background-color 0.3s ease;
+}
+
+.patient-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.patient-dept {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.patient-thanks {
+    font-size: 0.95rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.2;
+}
+
+.video-play-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.85rem;
+    transition: var(--transition-quick);
+    box-shadow: 0 4px 10px rgba(0, 122, 122, 0.2);
+    flex-shrink: 0;
+}
+
+.patient-video-card:hover .video-play-btn {
+    background: var(--accent);
+    color: var(--text-dark);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(229, 182, 62, 0.4);
+}
+
+/* Fullscreen Shorts Video Modal */
+.video-shorts-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+}
+
+.shorts-modal-container {
+    position: relative;
+    width: 90%;
+    max-width: 380px;
+    height: 80vh;
+    max-height: 700px;
+    aspect-ratio: 9/16;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    background: #000;
+}
+
+.shorts-player-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.shorts-player-wrapper video,
+.shorts-player-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    display: none;
+}
+
+.shorts-player-wrapper video {
+    object-fit: cover;
+}
+
+.shorts-player-info {
+    position: absolute;
+    bottom: 25px;
+    left: 20px;
+    right: 20px;
+    color: #ffffff;
+    z-index: 10;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.shorts-player-info h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-family: 'Outfit', sans-serif;
+}
+
+.shorts-player-info p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.shorts-player-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 35%;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
+}
+
+.close-shorts-modal-btn {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-size: 45px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: var(--transition-quick);
+    z-index: 100000;
+    line-height: 1;
+}
+
+.close-shorts-modal-btn:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Responsive Breakpoints for Section */
+@media (max-width: 1200px) {
+    .video-testimonials-grid {
+        gap: 20px;
+    }
+    .patient-video-card {
+        flex: 0 0 calc(25% - 15px);
+    }
+}
+
+@media (max-width: 992px) {
+    .video-testimonials-grid {
+        gap: 20px;
+    }
+    .patient-video-card {
+        flex: 0 0 calc(33.333% - 14px);
+        aspect-ratio: 3/4;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-testimonials-grid {
+        gap: 16px;
+        padding: 0 10px;
+    }
+    .patient-video-card {
+        flex: 0 0 calc(50% - 8px);
+        aspect-ratio: 4/5;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-testimonials-grid {
+        gap: 20px;
+        padding: 0 15px;
+    }
+    .patient-video-card {
+        flex: 0 0 100%;
+        aspect-ratio: 4/5;
+    }
+    .shorts-modal-container {
+        width: 100vw;
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+    }
+    .close-shorts-modal-btn {
+        top: 15px;
+        right: 25px;
+        font-size: 38px;
+    }
+}

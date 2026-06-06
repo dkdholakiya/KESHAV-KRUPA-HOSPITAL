@@ -33,6 +33,10 @@
     <!-- Style Sheet -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Preconnect for YouTube CDN and ads networks to eliminate network buffering latency -->
+    <link rel="preconnect" href="https://www.youtube.com" crossorigin>
+    <link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
+    <link rel="preconnect" href="https://static.doubleclick.net" crossorigin>
 </head>
 
 <body>
@@ -172,9 +176,9 @@
 
                 <!-- Left Info Panel -->
                 <div class="hero-left-panel">
-                    <!-- Main Header (Doctor's name) -->
+                    <!-- Main Header (Hospital Name) -->
                     <h1 class="hero-main-title anim-text-split">
-                        Dr. Shyam Patel
+                        Keshavkrupa Hospital
                     </h1>
 
                     <!-- Trusted Patients Badge -->
@@ -1177,7 +1181,141 @@
             </div>
         </section>
 
+        <!-- ==========================================================================
+             5.5 PATIENT VIDEO TESTIMONIALS SECTION
+             ========================================================================== -->
+        <section id="video-testimonials" class="video-testimonials-section section-padding section-bg-white">
+            <div class="container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <span class="section-subtitle">CLINICAL MEDIA</span>
+                    <h2 class="section-title">Keshavkrupa Hospital Updates</h2>
+                    <div class="section-divider"></div>
+                </div>
 
+                <!-- Video Stories Grid -->
+                <div class="video-testimonials-grid">
+                    <!-- Card 1 -->
+                    <div class="patient-video-card"
+                        data-video-url="https://www.youtube.com/watch?v=jfKfPfyJRdk">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=400&h=600&q=80"
+                            class="patient-cutout-img" alt="Cardiac Care">
+                        <div class="video-card-bottom-sheet">
+                            <div class="patient-card-text">
+                                <span class="patient-dept">CLINICAL DESK</span>
+                                <span class="patient-thanks">Cardiac Care Overview</span>
+                            </div>
+                            <div class="video-play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="patient-video-card"
+                        data-video-url="https://www.youtube.com/watch?v=n4tK7LYFxI0">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&h=600&q=80"
+                            class="patient-cutout-img" alt="ICU Setup">
+                        <div class="video-card-bottom-sheet">
+                            <div class="patient-card-text">
+                                <span class="patient-dept">HOSPITAL VLOG</span>
+                                <span class="patient-thanks">Inside Our ICU Ward</span>
+                            </div>
+                            <div class="video-play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="patient-video-card"
+                        data-video-url="https://www.youtube.com/watch?v=K4DyBUG242c">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=400&h=600&q=80"
+                            class="patient-cutout-img" alt="Hypertension Tips">
+                        <div class="video-card-bottom-sheet">
+                            <div class="patient-card-text">
+                                <span class="patient-dept">CARDIOLOGY TIPS</span>
+                                <span class="patient-thanks">Managing Heart Health</span>
+                            </div>
+                            <div class="video-play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="patient-video-card"
+                        data-video-url="https://www.youtube.com/watch?v=J2X5mJ3HDYE">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=400&h=600&q=80"
+                            class="patient-cutout-img" alt="Orthopedic Desk">
+                        <div class="video-card-bottom-sheet">
+                            <div class="patient-card-text">
+                                <span class="patient-dept">ORTHOPEDIC DESK</span>
+                                <span class="patient-thanks">Joint Health Advice</span>
+                            </div>
+                            <div class="video-play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="patient-video-card"
+                        data-video-url="https://www.youtube.com/watch?v=3nQNiWdeH2Q">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=400&h=600&q=80"
+                            class="patient-cutout-img" alt="Oral Health Vlog">
+                        <div class="video-card-bottom-sheet">
+                            <div class="patient-card-text">
+                                <span class="patient-dept">DENTAL EDUCATION</span>
+                                <span class="patient-thanks">Oral Hygiene Vlog</span>
+                            </div>
+                            <div class="video-play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="patient-video-card"
+                        data-video-url="https://www.youtube.com/watch?v=jK2aIUmmdP4">
+                        <img src="https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=400&h=600&q=80"
+                            class="patient-cutout-img" alt="Clinical Research">
+                        <div class="video-card-bottom-sheet">
+                            <div class="patient-card-text">
+                                <span class="patient-dept">CLINICAL VLOG</span>
+                                <span class="patient-thanks">Diagnostic Lab Tour</span>
+                            </div>
+                            <div class="video-play-btn">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Action Button -->
+                <div class="section-footer-btn" style="text-align: center; margin-top: 40px;">
+                    <a href="#appointment" class="btn btn-primary">
+                        <span>View More Videos</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vertical Video Modal -->
+        <div id="videoShortsModal" class="video-shorts-modal" aria-hidden="true" role="dialog">
+            <span class="close-shorts-modal-btn">&times;</span>
+            <div class="shorts-modal-container">
+                <div class="shorts-player-wrapper">
+                    <video id="shortsPlayerVideo" src="" controls playsinline loop></video>
+                    <iframe id="shortsPlayerIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="shorts-player-info">
+                        <h4 id="shortsPatientName">Patient Name</h4>
+                        <p id="shortsPatientDept">Department</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- ==========================================================================
              6. SPECIALISTS TESTIMONIAL CAROUSEL SECTION
@@ -1655,6 +1793,151 @@
     <script src="assets/js/ScrollTrigger.min.js"></script>
     <!-- Custom Application Javascript -->
     <script src="assets/js/script.js"></script>
+
+    <!-- Patient Video Testimonials Controller -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const modal = document.getElementById("videoShortsModal");
+            const video = document.getElementById("shortsPlayerVideo");
+            const iframe = document.getElementById("shortsPlayerIframe");
+            const closeBtn = document.querySelector(".close-shorts-modal-btn");
+            const cards = document.querySelectorAll(".patient-video-card");
+            const nameEl = document.getElementById("shortsPatientName");
+            const deptEl = document.getElementById("shortsPatientDept");
+
+            function getYouTubeId(url) {
+                const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|shorts\/)([^#\&\?]*).*/;
+                const match = url.match(regExp);
+                return (match && match[2].length === 11) ? match[2] : null;
+            }
+
+            cards.forEach(card => {
+                card.addEventListener("click", () => {
+                    // Stop background auto-scroll to free CPU resources and prevent render lag
+                    stopGridAutoScroll();
+
+                    const videoUrl = card.getAttribute("data-video-url");
+                    const patientName = card.querySelector(".patient-thanks").innerText;
+                    const patientDept = card.querySelector(".patient-dept").innerText;
+
+                    nameEl.innerText = patientName;
+                    deptEl.innerText = patientDept;
+
+                    modal.style.display = "flex";
+                    modal.setAttribute("aria-hidden", "false");
+                    document.body.classList.add("overflow-hidden");
+
+                    const ytId = getYouTubeId(videoUrl);
+                    if (ytId) {
+                        video.style.display = "none";
+                        video.src = "";
+                        iframe.style.display = "block";
+                        iframe.src = `https://www.youtube.com/embed/${ytId}?autoplay=1&mute=0&loop=1&playlist=${ytId}&rel=0`;
+                    } else {
+                        iframe.style.display = "none";
+                        iframe.src = "";
+                        video.style.display = "block";
+                        video.src = videoUrl;
+                        video.play().catch(error => {
+                            console.log("Playback failed:", error);
+                        });
+                    }
+                });
+            });
+
+            function closeModal() {
+                modal.style.display = "none";
+                modal.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("overflow-hidden");
+                video.pause();
+                video.src = "";
+                iframe.src = "";
+                video.style.display = "none";
+                iframe.style.display = "none";
+
+                // Resume auto-scroll when modal closes
+                if (grid) {
+                    startGridAutoScroll();
+                }
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener("click", closeModal);
+            }
+
+            window.addEventListener("click", (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Horizontal auto-scroll logic for video updates grid
+            const grid = document.querySelector(".video-testimonials-grid");
+            let autoScrollTimer = null;
+
+            function startGridAutoScroll() {
+                stopGridAutoScroll();
+                autoScrollTimer = setInterval(() => {
+                    if (!grid || document.hidden) return;
+
+                    const firstCard = grid.querySelector(".patient-video-card");
+                    if (!firstCard) return;
+
+                    const style = window.getComputedStyle(grid);
+                    const gap = parseInt(style.gap || style.columnGap || "24", 10) || 24;
+                    const cardWidth = firstCard.offsetWidth + gap;
+
+                    const maxScrollLeft = grid.scrollWidth - grid.clientWidth;
+                    if (maxScrollLeft <= 0) return;
+
+                    // Temporarily disable scroll snapping and smooth behavior during animation to prevent conflicts with GSAP
+                    grid.style.scrollSnapType = "none";
+                    grid.style.scrollBehavior = "auto";
+
+                    // Use GSAP for exceptionally smooth, 60fps hardware-accelerated scroll animation
+                    gsap.to(grid, {
+                        scrollLeft: grid.scrollLeft + cardWidth,
+                        duration: 1.0, // Smooth transition over 1.0s
+                        ease: "power3.out", // Super smooth cubic deceleration
+                        onComplete: () => {
+                            if (!grid) return;
+                            
+                            const currentFirst = grid.querySelector(".patient-video-card");
+                            if (currentFirst) {
+                                // Instantly shift the DOM element and compensate scroll offset
+                                grid.appendChild(currentFirst);
+                                grid.scrollLeft = grid.scrollLeft - cardWidth;
+                            }
+                            
+                            // Re-enable scroll snapping and smooth behavior for manual gestures
+                            grid.style.scrollBehavior = "smooth";
+                            grid.style.scrollSnapType = "x mandatory";
+                        }
+                    });
+                }, 3500); // Auto-advance every 3.5 seconds
+            }
+
+            function stopGridAutoScroll() {
+                if (autoScrollTimer) {
+                    clearInterval(autoScrollTimer);
+                    autoScrollTimer = null;
+                }
+            }
+
+            // Start auto scroll immediately
+            if (grid) {
+                startGridAutoScroll();
+
+                // Pause scrolling on hover
+                grid.addEventListener("mouseenter", stopGridAutoScroll);
+                grid.addEventListener("mouseleave", startGridAutoScroll);
+
+                // Touch support for mobile: pause when touch start, resume when touch end
+                grid.addEventListener("touchstart", stopGridAutoScroll, { passive: true });
+                grid.addEventListener("touchend", startGridAutoScroll, { passive: true });
+            }
+        });
+    </script>
     <!-- GLOBAL APPOINTMENT MODAL & FLOATING BUTTON -->
     <!-- FLOATING WHATSAPP BUTTON -->
     <a href="https://wa.me/919313751534" class="floating-whatsapp-btn" target="_blank" rel="noopener noreferrer"
