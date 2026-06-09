@@ -246,6 +246,39 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // 4.5 Dynamic Rendering of Other Specialists
+    const otherDoctorsGrid = document.getElementById("otherDoctorsGrid");
+    if (otherDoctorsGrid) {
+        const otherDocsHtml = Object.keys(doctorsData)
+            .filter(id => id !== doctorId)
+            .map(id => {
+                const doc = doctorsData[id];
+                return `
+                    <a href="doctor-profile.html?id=${id}" class="doctor-card" style="text-decoration: none; color: inherit; display: block;">
+                        <div class="doc-image-wrapper">
+                            <img src="${doc.image}" alt="${doc.name}" class="doc-image">
+                            <div class="doc-overlay">
+                                <div class="doc-socials">
+                                    <span class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem; background: var(--accent); color: var(--text-dark); border-color: var(--accent); font-weight: 600;">View Profile</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="doc-info">
+                            <h3>${doc.name}</h3>
+                            <span class="doc-spec">${doc.specialty}</span>
+                            <span class="doc-exp"><i class="fa-solid fa-award"></i> ${doc.experience}</span>
+                        </div>
+                    </a>
+                `;
+            }).join("");
+        otherDoctorsGrid.innerHTML = otherDocsHtml;
+    }
+
+    // Refresh ScrollTrigger to recalculate trigger positions after dynamic height changes
+    if (typeof ScrollTrigger !== "undefined") {
+        ScrollTrigger.refresh();
+    }
+
     // 5. GSAP Entrance Animations
     if (typeof gsap !== "undefined") {
         gsap.config({ nullTargetWarn: false });
@@ -277,7 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ease: "back.out(1.5)",
                 scrollTrigger: {
                     trigger: ".spec-badges-container",
-                    start: "top 90%"
+                    start: "top 95%"
                 }
             }
         );
@@ -292,14 +325,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 duration: 0.8,
                 scrollTrigger: {
                     trigger: ".timeline-wrapper",
-                    start: "top 85%"
+                    start: "top 95%"
+                }
+            }
+        );
+
+        // Other doctors cards reveal on scroll
+        gsap.fromTo(".other-doctors-grid .doctor-card",
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.15,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: ".other-doctors-container",
+                    start: "top bottom+=50"
                 }
             }
         );
     }
 
     // Register custom cursor hover interactions for new profile components
-    const profileHoverables = document.querySelectorAll(".spec-badge, .timeline-item, .availability-table tr, .cta-appointment-btn, .breadcrumbs-nav a");
+    const profileHoverables = document.querySelectorAll(".spec-badge, .timeline-item, .availability-table tr, .cta-appointment-btn, .breadcrumbs-nav a, .other-doctors-grid .doctor-card");
     profileHoverables.forEach(item => {
         item.addEventListener("mouseenter", () => {
             document.body.classList.add("hovered-element");
@@ -310,3 +358,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+

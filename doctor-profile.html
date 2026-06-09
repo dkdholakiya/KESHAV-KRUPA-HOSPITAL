@@ -16,6 +16,66 @@
 
     <!-- Style Sheet -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* Other Specialists Horizontal Layout */
+        .other-specialists-section {
+            padding-top: 80px;
+            padding-bottom: 85px;
+            border-top: 1px solid rgba(0, 122, 122, 0.08);
+            background-color: var(--bg-light);
+        }
+        
+        .other-doctors-container {
+            width: 100%;
+            overflow-x: auto;
+            padding: 15px 0 30px 0;
+            margin-top: 20px;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .other-doctors-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+        
+        .other-doctors-grid {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 30px;
+        }
+        
+        .other-doctors-grid .doctor-card {
+            flex: 0 0 calc(33.333% - 20px);
+            min-width: 290px;
+            box-shadow: 0 15px 35px rgba(0, 122, 122, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .other-doctors-grid .doc-image-wrapper {
+            height: 300px;
+        }
+        
+        @media (max-width: 992px) {
+            .other-doctors-grid .doctor-card {
+                flex: 0 0 calc(50% - 15px);
+            }
+        }
+        
+        @media (max-width: 650px) {
+            .other-doctors-grid .doctor-card {
+                flex: 0 0 calc(85% - 15px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .other-doctors-grid .doctor-card {
+                flex: 0 0 calc(100% - 20px);
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -86,6 +146,7 @@
                 <a href="why-choose-us.html" class="nav-link">Why Us</a>
                 <a href="doctors.html" class="nav-link active">Doctors</a>
                 <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="clinical-media.html" class="nav-link">Media</a>
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
 
@@ -113,6 +174,7 @@
                 <a href="why-choose-us.html" class="mobile-link"><i class="fa-solid fa-star" style="margin-right: 10px; color: var(--primary); width: 20px;"></i>Why Us</a>
                 <a href="doctors.html" class="mobile-link active"><i class="fa-solid fa-user-doctor" style="margin-right: 10px; color: var(--primary); width: 20px;"></i>Doctors</a>
                 <a href="gallery.html" class="mobile-link"><i class="fa-solid fa-images" style="margin-right: 10px; color: var(--primary); width: 20px;"></i>Gallery</a>
+                <a href="clinical-media.html" class="mobile-link"><i class="fa-solid fa-video" style="margin-right: 10px; color: var(--primary); width: 20px;"></i>Media</a>
                 <a href="contact.html" class="mobile-link"><i class="fa-solid fa-address-book" style="margin-right: 10px; color: var(--primary); width: 20px;"></i>Contact</a>
                 <a href="index.html#appointment" class="btn btn-primary mobile-appointment-btn">
                     <span>Book Appointment</span>
@@ -246,6 +308,23 @@
             </div>
         </section>
 
+        <!-- Other Specialists Section -->
+        <section class="other-specialists-section section-padding">
+            <div class="container">
+                <div class="section-header" style="text-align: center; margin-bottom: 45px;">
+                    <span class="section-subtitle">MEET OUR OTHER SPECIALISTS</span>
+                    <h2 class="section-title">Other Specialists</h2>
+                    <div class="section-divider"></div>
+                </div>
+
+                <div class="other-doctors-container">
+                    <div class="other-doctors-grid" id="otherDoctorsGrid">
+                        <!-- Dynamic Doctor Cards loaded via profile.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- FOOTER -->
@@ -294,6 +373,7 @@
                         <li><a href="why-choose-us.html">Why Choose Us</a></li>
                         <li><a href="doctors.html">Our Medical Team</a></li>
                         <li><a href="gallery.html">Hospital Gallery</a></li>
+                        <li><a href="clinical-media.html">Clinical Media</a></li>
                         <li><a href="index.html#appointment">Book Appointments</a></li>
                     </ul>
                 </div>
